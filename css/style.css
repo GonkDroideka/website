@@ -1,6 +1,6 @@
 :root {
     --bg-color: #0d0221;
-    --window-bg: rgba(21, 0, 80, 0.8);
+    --window-bg: rgba(13, 2, 33, 0.85);
     --neon-pink: #ff00ff;
     --neon-cyan: #00ffff;
     --text-color: #e0e0e0;
@@ -9,11 +9,13 @@
 }
 
 body {
-    background: var(--bg-color);
-    background-image: 
-        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 3px 100%;
+    background-color: var(--bg-color);
+    /* Points to your local GIF file */
+    background-image: url('../images/bg.gif');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
     color: var(--text-color);
     font-family: var(--terminal-font);
     font-size: 1.2rem;
@@ -29,7 +31,7 @@ body {
 .scanlines {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
     background-size: 100% 4px;
     z-index: 10;
     pointer-events: none;
@@ -38,7 +40,7 @@ body {
 .crt-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 100%);
+    background: radial-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
     z-index: 11;
     pointer-events: none;
 }
@@ -47,10 +49,11 @@ body {
 .window {
     background: var(--window-bg);
     border: 2px solid var(--neon-cyan);
-    box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(0, 255, 255, 0.1);
     width: 90vw;
     max-width: 700px;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
+    z-index: 20;
 }
 
 .title-bar {
@@ -95,22 +98,22 @@ h2 {
     color: var(--neon-cyan);
     text-decoration: none;
     margin-right: 20px;
-    border: 1px solid transparent;
+    font-weight: bold;
 }
 
 .links a:hover {
-    border: 1px solid var(--neon-cyan);
-    box-shadow: 0 0 10px var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+    text-decoration: underline;
 }
 
 /* Animations */
 @keyframes flicker {
-    0% { opacity: 0.95; }
-    5% { opacity: 0.85; }
-    10% { opacity: 0.95; }
+    0% { opacity: 0.98; }
+    5% { opacity: 0.95; }
+    10% { opacity: 0.99; }
     100% { opacity: 1; }
 }
 
 .main-window {
-    animation: flicker 0.15s infinite;
+    animation: flicker 0.2s infinite;
 }
