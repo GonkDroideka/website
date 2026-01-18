@@ -10,7 +10,6 @@
 
 body {
     background-color: var(--bg-color);
-    /* Points to your local GIF file */
     background-image: url('../images/bg.gif');
     background-size: cover;
     background-position: center;
@@ -62,9 +61,32 @@ body {
     padding: 5px 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-family: var(--header-font);
     font-weight: bold;
     font-size: 0.8rem;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#music-btn {
+    background: #000;
+    color: var(--neon-cyan);
+    border: 1px solid #000;
+    font-family: var(--terminal-font);
+    cursor: pointer;
+    padding: 2px 8px;
+    font-size: 0.9rem;
+}
+
+#music-btn.playing {
+    color: var(--neon-pink);
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 5px var(--neon-pink);
 }
 
 .content {

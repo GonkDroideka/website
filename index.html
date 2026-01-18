@@ -12,12 +12,19 @@
     <div class="crt-overlay"></div>
     <div class="scanlines"></div>
 
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="music/track.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="desktop">
         <!-- Main Terminal Window -->
         <div class="window main-window">
             <div class="title-bar">
                 <div class="title">RESUME.EXE</div>
                 <div class="controls">
+                    <!-- Music Toggle Button -->
+                    <button id="music-btn" title="Toggle Music">♫ PLAY</button>
                     <span>_</span><span>□</span><span>×</span>
                 </div>
             </div>
@@ -50,5 +57,23 @@
             </div>
         </div>
     </div>
+
+    <!-- Script to handle music play/pause -->
+    <script>
+        const music = document.getElementById('bg-music');
+        const btn = document.getElementById('music-btn');
+
+        btn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                btn.innerText = '|| PAUSE';
+                btn.classList.add('playing');
+            } else {
+                music.pause();
+                btn.innerText = '♫ PLAY';
+                btn.classList.remove('playing');
+            }
+        });
+    </script>
 </body>
 </html>
