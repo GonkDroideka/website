@@ -12,48 +12,74 @@
     <div class="crt-overlay"></div>
     <div class="scanlines"></div>
 
-    <!-- Audio Element -->
+    <!-- Audio Element (Hidden) -->
     <audio id="bg-music" loop>
         <source src="music/track.mp3" type="audio/mpeg">
     </audio>
 
     <div class="desktop">
-        <!-- Navigation Buttons -->
-        <div class="nav-container nav-top">
-            <button class="win95-btn active" onclick="showPage('home', this)">HOME</button>
-            <button class="win95-btn" onclick="showPage('projects', this)">PROJECTS</button>
+        
+        <!-- Top Right Media Launcher -->
+        <button class="win95-btn music-launcher" onclick="toggleMediaPlayer()">
+            ♫ MEDIA_PLAYER
+        </button>
+
+        <!-- Draggable Media Player Window -->
+        <div id="media-player" class="window draggable-window" style="display: none; top: 20%; left: 70%;">
+            <div class="title-bar" id="media-player-header">
+                <div class="title">WINAMP.EXE</div>
+                <div class="controls">
+                    <span onclick="toggleMediaPlayer()" style="cursor: pointer;">×</span>
+                </div>
+            </div>
+            <div class="content media-content">
+                <p><strong>NOW PLAYING:</strong></p>
+                <p class="scrolling-text">Synthwave Mix Vol. 1 - Neon Nights...</p>
+                <div class="media-controls">
+                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').play()">►</button>
+                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').pause()">||</button>
+                    <button class="win95-btn small-btn">◄◄</button>
+                    <button class="win95-btn small-btn">►►</button>
+                </div>
+            </div>
         </div>
 
-        <div class="nav-container nav-left">
-            <button class="win95-btn" onclick="showPage('music', this)">MUSIC</button>
-            <button class="win95-btn" onclick="showPage('film', this)">FILM</button>
-        </div>
-
-        <div class="nav-container nav-right">
-            <button class="win95-btn" onclick="showPage('events', this)">EVENTS</button>
-            <button class="win95-btn" onclick="showPage('contact', this)">CONTACT</button>
-        </div>
-
-        <!-- Main Window -->
+        <!-- Main Content Window -->
         <div class="window main-window">
             <div class="title-bar">
                 <div class="title" id="window-title">C:\USER\GONKDROIDEKA\HOME.TXT</div>
                 <div class="controls">
-                    <button id="music-btn">♫ PLAY</button>
                     <span>_</span><span>□</span><span>×</span>
                 </div>
             </div>
             
             <div class="content">
-                <!-- PAGE: HOME (CASUAL PROFILE) -->
+                <!-- PAGE: HOME -->
                 <div id="home" class="page active">
                     <h1 class="neon-text">Gonk_OS v1.0</h1>
                     <p class="status-line">> Accessing personal_log.txt...</p>
                     <div class="casual-bio">
-                        <p>Yo, I'm <strong>Rithvik</strong>. By day, I'm navigating IT infrastructure and cloud deployments in Reno, NV. By night, I'm deep into synth-heavy aesthetics and exploring the intersection of retro tech and future systems.</p>
-                        <p>I graduated with a CS degree, but I'm more interested in how systems *feel* than just how they run. I'm a fan of legacy OS vibes, droid-tier hardware (shoutout Gonk), and automated workflows.</p>
-                        <p>Welcome to my corner of the cloud.</p>
+                        <p>Yo, I'm <strong>Rithvik</strong>. Welcome to my corner of the cloud.</p>
+                        <p>This system is running on Azure Static Web Apps. Feel free to browse the file system below.</p>
                     </div>
+                </div>
+
+                <!-- PAGE: ABOUT -->
+                <div id="about" class="page">
+                    <h2>[ ABOUT_ME ]</h2>
+                    <p>I graduated with a CS degree, but I'm more interested in how systems *feel* than just how they run. I'm a fan of legacy OS vibes, droid-tier hardware (shoutout Gonk), and automated workflows.</p>
+                    <p>By day, I'm navigating IT infrastructure and cloud deployments in Reno, NV.</p>
+                </div>
+
+                <!-- PAGE: SERVICES -->
+                <div id="services" class="page">
+                    <h2>[ SERVICES_OFFERED ]</h2>
+                    <ul>
+                        <li><strong>Cloud Architecture:</strong> Azure & AWS deployment strategies.</li>
+                        <li><strong>System Administration:</strong> Windows Server, AD, & Linux management.</li>
+                        <li><strong>Automation:</strong> PowerShell & Bash scripting to kill manual tasks.</li>
+                        <li><strong>Web Dev:</strong> Retro-styled frontends with modern backends.</li>
+                    </ul>
                 </div>
 
                 <!-- PAGE: PROJECTS -->
@@ -70,7 +96,7 @@
                 <div id="music" class="page">
                     <h2>[ SONIC_WAVES ]</h2>
                     <p>Current playlist: Synthwave / Lo-Fi / 16-Bit OSTs.</p>
-                    <p>Use the ♫ button in the title bar to start the system audio.</p>
+                    <p>Open the Media Player in the top right to control playback.</p>
                 </div>
 
                 <!-- PAGE: FILM -->
@@ -94,39 +120,82 @@
                 </div>
             </div>
         </div>
+
+        <!-- Bottom Taskbar Navigation -->
+        <div class="nav-bottom">
+            <button class="win95-btn active" onclick="showPage('home', this)">HOME</button>
+            <button class="win95-btn" onclick="showPage('about', this)">ABOUT</button>
+            <button class="win95-btn" onclick="showPage('services', this)">SERVICES</button>
+            <button class="win95-btn" onclick="showPage('projects', this)">PROJECTS</button>
+            <button class="win95-btn" onclick="showPage('music', this)">MUSIC</button>
+            <button class="win95-btn" onclick="showPage('film', this)">FILM</button>
+            <button class="win95-btn" onclick="showPage('events', this)">EVENTS</button>
+            <button class="win95-btn" onclick="showPage('contact', this)">CONTACT</button>
+        </div>
     </div>
 
     <script>
         // Navigation Logic
         function showPage(pageId, btn) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Show selected page
             document.getElementById(pageId).classList.add('active');
-            
-            // Update title bar
             document.getElementById('window-title').innerText = `C:\\USER\\GONKDROIDEKA\\${pageId.toUpperCase()}.TXT`;
-
-            // Update button styles
-            document.querySelectorAll('.win95-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.nav-bottom .win95-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
 
-        // Music Logic
-        const music = document.getElementById('bg-music');
-        const btn = document.getElementById('music-btn');
-
-        btn.addEventListener('click', () => {
-            if (music.paused) {
-                music.play();
-                btn.innerText = '|| STOP';
-                btn.style.color = '#ff00ff';
+        // Media Player Toggle
+        function toggleMediaPlayer() {
+            const player = document.getElementById('media-player');
+            if (player.style.display === 'none') {
+                player.style.display = 'block';
             } else {
-                music.pause();
-                btn.innerText = '♫ PLAY';
-                btn.style.color = '#000';
+                player.style.display = 'none';
             }
-        });
+        }
+
+        // Draggable Window Logic
+        dragElement(document.getElementById("media-player"));
+
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id + "-header")) {
+                // if present, the header is where you move the DIV from:
+                document.getElementById(elmnt.id + "-header").onmousedown = dragMouseDown;
+            } else {
+                // otherwise, move the DIV from anywhere inside the DIV:
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                // stop moving when mouse button is released:
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
     </script>
 </body>
 </html>
