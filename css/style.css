@@ -1,141 +1,112 @@
 :root {
-    --bg-color: #0d0221;
-    --window-bg: rgba(13, 2, 33, 0.85);
+    --win-bg: #c0c0c0;
+    --win-border-light: #ffffff;
+    --win-border-dark: #808080;
+    --win-blue: #000080;
     --neon-pink: #ff00ff;
     --neon-cyan: #00ffff;
-    --text-color: #e0e0e0;
-    --terminal-font: 'VT323', monospace;
-    --header-font: 'Orbitron', sans-serif;
+    --bg-color: #008080; /* Standard Win95 Teal */
 }
 
 body {
     background-color: var(--bg-color);
-    background-image: url('../images/bg.gif');
+    background-image: url('../images/bg.gif'); /* Your synthwave gif */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    
-    color: var(--text-color);
-    font-family: var(--terminal-font);
-    font-size: 1.2rem;
-    height: 100vh;
     margin: 0;
     overflow: hidden;
+    height: 100vh;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
+}
+
+/* Windows 95 Button Style */
+.win95-btn {
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+    padding: 8px 15px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 1px 1px 0 #000;
+    min-width: 100px;
+}
+
+.win95-btn:active, .win95-btn.active {
+    border-color: var(--win-border-dark) var(--win-border-light) var(--win-border-light) var(--win-border-dark);
+    box-shadow: inset 1px 1px 0 #000;
+    background: #dfdfdf;
+    color: var(--win-blue);
+}
+
+/* Positioning Containers */
+.nav-container {
+    position: fixed;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 15px;
+    z-index: 100;
 }
 
-/* CRT Effects */
-.scanlines {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
-    background-size: 100% 4px;
-    z-index: 10;
-    pointer-events: none;
-}
+.nav-top { top: 20px; left: 50%; transform: translateX(-50%); }
+.nav-left { left: 20px; top: 50%; transform: translateY(-50%); flex-direction: column; }
+.nav-right { right: 20px; top: 50%; transform: translateY(-50%); flex-direction: column; }
 
-.crt-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
-    z-index: 11;
-    pointer-events: none;
-}
-
-/* Window Styling */
+/* Main Window */
 .window {
-    background: var(--window-bg);
-    border: 2px solid var(--neon-cyan);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(0, 255, 255, 0.1);
-    width: 90vw;
-    max-width: 700px;
-    backdrop-filter: blur(8px);
-    z-index: 20;
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+    width: 80vw;
+    max-width: 800px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 .title-bar {
-    background: var(--neon-cyan);
-    color: #000;
-    padding: 5px 10px;
+    background: linear-gradient(90deg, var(--win-blue), #1084d0);
+    color: white;
+    padding: 3px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: var(--header-font);
     font-weight: bold;
-    font-size: 0.8rem;
-}
-
-.controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#music-btn {
-    background: #000;
-    color: var(--neon-cyan);
-    border: 1px solid #000;
-    font-family: var(--terminal-font);
-    cursor: pointer;
-    padding: 2px 8px;
-    font-size: 0.9rem;
-}
-
-#music-btn.playing {
-    color: var(--neon-pink);
-    border-color: var(--neon-pink);
-    box-shadow: 0 0 5px var(--neon-pink);
 }
 
 .content {
-    padding: 30px;
+    background: #fff;
+    border: 2px solid inset;
+    margin: 5px;
+    padding: 20px;
+    height: 400px;
+    overflow-y: auto;
+    color: #000;
 }
 
+/* CRT & Glow Effects */
 .neon-text {
-    font-family: var(--header-font);
+    font-family: 'VT323', monospace;
     color: var(--neon-pink);
-    text-shadow: 0 0 10px var(--neon-pink);
-    text-transform: uppercase;
+    text-shadow: 2px 2px 0px #000;
+    font-size: 3rem;
     margin: 0;
 }
 
-h2 {
-    color: var(--neon-cyan);
-    border-bottom: 1px solid var(--neon-cyan);
-    padding-bottom: 5px;
-    font-size: 1.5rem;
-}
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.3s; }
 
-.skill-tag {
-    display: inline-block;
-    border: 1px solid var(--neon-pink);
-    padding: 2px 8px;
-    margin: 5px;
-    color: var(--neon-pink);
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-.links a {
-    color: var(--neon-cyan);
-    text-decoration: none;
-    margin-right: 20px;
-    font-weight: bold;
-}
+.win-link { color: var(--win-blue); }
 
-.links a:hover {
-    text-shadow: 0 0 10px var(--neon-cyan);
-    text-decoration: underline;
-}
-
-/* Animations */
-@keyframes flicker {
-    0% { opacity: 0.98; }
-    5% { opacity: 0.95; }
-    10% { opacity: 0.99; }
-    100% { opacity: 1; }
-}
-
-.main-window {
-    animation: flicker 0.2s infinite;
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 4px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.3;
 }

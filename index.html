@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GonkDroideka // System_Root</title>
+    <title>Gonk_OS // Rithvik_Ram</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Retro Font -->
-    <link href="[https://fonts.googleapis.com/css2?family=VT323&family=Orbitron:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=VT323&family=Orbitron:wght@400;700&display=swap)" rel="stylesheet">
+    <!-- Retro Fonts -->
+    <link href="[https://fonts.googleapis.com/css2?family=MS+Sans+Serif&family=VT323&display=swap](https://fonts.googleapis.com/css2?family=MS+Sans+Serif&family=VT323&display=swap)" rel="stylesheet">
 </head>
 <body>
     <div class="crt-overlay"></div>
@@ -18,60 +18,113 @@
     </audio>
 
     <div class="desktop">
-        <!-- Main Terminal Window -->
+        <!-- Navigation Buttons -->
+        <div class="nav-container nav-top">
+            <button class="win95-btn active" onclick="showPage('home', this)">HOME</button>
+            <button class="win95-btn" onclick="showPage('projects', this)">PROJECTS</button>
+        </div>
+
+        <div class="nav-container nav-left">
+            <button class="win95-btn" onclick="showPage('music', this)">MUSIC</button>
+            <button class="win95-btn" onclick="showPage('film', this)">FILM</button>
+        </div>
+
+        <div class="nav-container nav-right">
+            <button class="win95-btn" onclick="showPage('events', this)">EVENTS</button>
+            <button class="win95-btn" onclick="showPage('contact', this)">CONTACT</button>
+        </div>
+
+        <!-- Main Window -->
         <div class="window main-window">
             <div class="title-bar">
-                <div class="title">RESUME.EXE</div>
+                <div class="title" id="window-title">C:\USER\GONKDROIDEKA\HOME.TXT</div>
                 <div class="controls">
-                    <!-- Music Toggle Button -->
-                    <button id="music-btn" title="Toggle Music">♫ PLAY</button>
+                    <button id="music-btn">♫ PLAY</button>
                     <span>_</span><span>□</span><span>×</span>
                 </div>
             </div>
+            
             <div class="content">
-                <header>
-                    <h1 class="neon-text">Rithvik Ram</h1>
-                    <p class="subtitle">> SYSTEM ADMINISTRATOR_</p>
-                </header>
-
-                <section>
-                    <h2>[ ABOUT ]</h2>
-                    <p>Computer Science graduate specializing in IT Infrastructure and Cloud Automation. Executing operations in Reno, NV.</p>
-                </section>
-
-                <section>
-                    <h2>[ SKILLS ]</h2>
-                    <div class="grid">
-                        <div class="skill-tag">Azure Cloud</div>
-                        <div class="skill-tag">Active Directory</div>
-                        <div class="skill-tag">PowerShell</div>
-                        <div class="skill-tag">Network Sec</div>
+                <!-- PAGE: HOME (CASUAL PROFILE) -->
+                <div id="home" class="page active">
+                    <h1 class="neon-text">Gonk_OS v1.0</h1>
+                    <p class="status-line">> Accessing personal_log.txt...</p>
+                    <div class="casual-bio">
+                        <p>Yo, I'm <strong>Rithvik</strong>. By day, I'm navigating IT infrastructure and cloud deployments in Reno, NV. By night, I'm deep into synth-heavy aesthetics and exploring the intersection of retro tech and future systems.</p>
+                        <p>I graduated with a CS degree, but I'm more interested in how systems *feel* than just how they run. I'm a fan of legacy OS vibes, droid-tier hardware (shoutout Gonk), and automated workflows.</p>
+                        <p>Welcome to my corner of the cloud.</p>
                     </div>
-                </section>
+                </div>
 
-                <div class="links">
-                    <a href="#">EMAIL</a>
-                    <a href="[https://github.com/GonkDroideka](https://github.com/GonkDroideka)">GITHUB</a>
-                    <a href="#">LINKEDIN</a>
+                <!-- PAGE: PROJECTS -->
+                <div id="projects" class="page">
+                    <h2>[ RECENT_DATA_DUMPS ]</h2>
+                    <ul>
+                        <li><strong>Azure Static Resume:</strong> You're looking at it. CI/CD via GitHub Actions.</li>
+                        <li><strong>PowerShell Automations:</strong> Scripts to keep the chaos organized.</li>
+                        <li><strong>Homelab Alpha:</strong> Running a Windows Server / AD environment for testing.</li>
+                    </ul>
+                </div>
+
+                <!-- PAGE: MUSIC -->
+                <div id="music" class="page">
+                    <h2>[ SONIC_WAVES ]</h2>
+                    <p>Current playlist: Synthwave / Lo-Fi / 16-Bit OSTs.</p>
+                    <p>Use the ♫ button in the title bar to start the system audio.</p>
+                </div>
+
+                <!-- PAGE: FILM -->
+                <div id="film" class="page">
+                    <h2>[ VISUAL_FEEDS ]</h2>
+                    <p>Archiving visual inspiration from 80s sci-fi and analog horror.</p>
+                </div>
+
+                <!-- PAGE: EVENTS -->
+                <div id="events" class="page">
+                    <h2>[ SYSTEM_CALENDAR ]</h2>
+                    <p>Next Deployment: AZ-900 Certification Review.</p>
+                    <p>Location: Reno, NV Sector.</p>
+                </div>
+
+                <!-- PAGE: CONTACT -->
+                <div id="contact" class="page">
+                    <h2>[ COMMS_CHANNEL ]</h2>
+                    <p>Send a packet to: <a href="mailto:your@email.com" class="win-link">GONK@RENO_NV.NET</a></p>
+                    <p>Signal: <a href="[https://linkedin.com](https://linkedin.com)" class="win-link">LINKEDIN</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Script to handle music play/pause -->
     <script>
+        // Navigation Logic
+        function showPage(pageId, btn) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update title bar
+            document.getElementById('window-title').innerText = `C:\\USER\\GONKDROIDEKA\\${pageId.toUpperCase()}.TXT`;
+
+            // Update button styles
+            document.querySelectorAll('.win95-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // Music Logic
         const music = document.getElementById('bg-music');
         const btn = document.getElementById('music-btn');
 
         btn.addEventListener('click', () => {
             if (music.paused) {
                 music.play();
-                btn.innerText = '|| PAUSE';
-                btn.classList.add('playing');
+                btn.innerText = '|| STOP';
+                btn.style.color = '#ff00ff';
             } else {
                 music.pause();
                 btn.innerText = '♫ PLAY';
-                btn.classList.remove('playing');
+                btn.style.color = '#000';
             }
         });
     </script>
