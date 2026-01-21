@@ -102,10 +102,7 @@ body {
     cursor: default;
 }
 
-/* Specific cursor for draggable header */
-#media-player-header {
-    cursor: move; 
-}
+#media-player-header { cursor: move; }
 
 .content {
     background: #fff;
@@ -117,27 +114,56 @@ body {
     color: #000;
 }
 
-.media-content {
-    height: auto;
-    background: #000;
-    color: #0f0; /* Matrix green text */
-    font-family: 'VT323', monospace;
+/* Home Screen Dashboard */
+.hero-section {
     text-align: center;
+    margin-bottom: 25px;
 }
 
-.media-controls {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-top: 10px;
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.small-btn {
-    min-width: 30px;
-    padding: 2px 5px;
+.skill-card {
+    background: #f0f0f0;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s;
 }
 
-/* Typography & Effects */
+.skill-card:hover {
+    background: #e0e0ff;
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.skill-card h3 {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: var(--win-blue);
+    font-family: 'MS Sans Serif', sans-serif;
+}
+
+.skill-card p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.card-icon { font-size: 2rem; }
+.link-text {
+    font-family: 'VT323', monospace;
+    color: #000080;
+    font-size: 1.1rem;
+    display: block;
+}
+
+/* Animations */
 .neon-text {
     font-family: 'VT323', monospace;
     color: var(--neon-pink);
@@ -146,13 +172,46 @@ body {
     margin: 0;
 }
 
+.typing-text {
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid var(--neon-cyan);
+    width: 0;
+    animation: typing 3s steps(30, end) forwards, blink .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: var(--neon-cyan) }
+}
+
+/* Media Player & Other */
+.media-content {
+    height: auto;
+    background: #000;
+    color: #0f0; 
+    font-family: 'VT323', monospace;
+    text-align: center;
+}
+.media-controls {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+.small-btn { min-width: 30px; padding: 2px 5px; }
 .page { display: none; }
 .page.active { display: block; animation: fadeIn 0.3s; }
-
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
 .win-link { color: var(--win-blue); }
-
 .scanlines {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;

@@ -56,11 +56,35 @@
             <div class="content">
                 <!-- PAGE: HOME -->
                 <div id="home" class="page active">
-                    <h1 class="neon-text">Gonk_OS v1.0</h1>
-                    <p class="status-line">> Accessing personal_log.txt...</p>
-                    <div class="casual-bio">
-                        <p>Yo, I'm <strong>Rithvik</strong>. Welcome to my corner of the cloud.</p>
-                        <p>This system is running on Azure Static Web Apps. Feel free to browse the file system below.</p>
+                    <div class="hero-section">
+                        <h1 class="neon-text flicker-slow">Gonk_OS v1.0</h1>
+                        <p class="typing-text">> USER: Rithvik_Ram // STATUS: ONLINE_</p>
+                    </div>
+
+                    <div class="skill-grid">
+                        <!-- Tech Card -->
+                        <div class="skill-card" onclick="triggerNav('services')">
+                            <div class="card-icon">💻</div>
+                            <h3>SYSTEMS & CODE</h3>
+                            <p>Web Design, CS Fundamentals, & IT Infrastructure.</p>
+                            <span class="link-text">>> EXECUTE_SERVICES</span>
+                        </div>
+
+                        <!-- Creative Card -->
+                        <div class="skill-card" onclick="triggerNav('music')">
+                            <div class="card-icon">🎸</div>
+                            <h3>A/V PRODUCTION</h3>
+                            <p>Analog Film Photography & Guitar Composition.</p>
+                            <span class="link-text">>> LOAD_MEDIA</span>
+                        </div>
+
+                        <!-- Tutoring Card -->
+                        <div class="skill-card" onclick="triggerNav('about')">
+                            <div class="card-icon">🎓</div>
+                            <h3>MENTORSHIP</h3>
+                            <p>Tutoring in logic, code, and technical systems.</p>
+                            <span class="link-text">>> ACCESS_BIO</span>
+                        </div>
                     </div>
                 </div>
 
@@ -69,6 +93,7 @@
                     <h2>[ ABOUT_ME ]</h2>
                     <p>I graduated with a CS degree, but I'm more interested in how systems *feel* than just how they run. I'm a fan of legacy OS vibes, droid-tier hardware (shoutout Gonk), and automated workflows.</p>
                     <p>By day, I'm navigating IT infrastructure and cloud deployments in Reno, NV.</p>
+                    <p>I also offer tutoring services for those just starting their journey into tech.</p>
                 </div>
 
                 <!-- PAGE: SERVICES -->
@@ -123,14 +148,14 @@
 
         <!-- Bottom Taskbar Navigation -->
         <div class="nav-bottom">
-            <button class="win95-btn active" onclick="showPage('home', this)">HOME</button>
-            <button class="win95-btn" onclick="showPage('about', this)">ABOUT</button>
-            <button class="win95-btn" onclick="showPage('services', this)">SERVICES</button>
-            <button class="win95-btn" onclick="showPage('projects', this)">PROJECTS</button>
-            <button class="win95-btn" onclick="showPage('music', this)">MUSIC</button>
-            <button class="win95-btn" onclick="showPage('film', this)">FILM</button>
-            <button class="win95-btn" onclick="showPage('events', this)">EVENTS</button>
-            <button class="win95-btn" onclick="showPage('contact', this)">CONTACT</button>
+            <button class="win95-btn active" data-target="home" onclick="showPage('home', this)">HOME</button>
+            <button class="win95-btn" data-target="about" onclick="showPage('about', this)">ABOUT</button>
+            <button class="win95-btn" data-target="services" onclick="showPage('services', this)">SERVICES</button>
+            <button class="win95-btn" data-target="projects" onclick="showPage('projects', this)">PROJECTS</button>
+            <button class="win95-btn" data-target="music" onclick="showPage('music', this)">MUSIC</button>
+            <button class="win95-btn" data-target="film" onclick="showPage('film', this)">FILM</button>
+            <button class="win95-btn" data-target="events" onclick="showPage('events', this)">EVENTS</button>
+            <button class="win95-btn" data-target="contact" onclick="showPage('contact', this)">CONTACT</button>
         </div>
     </div>
 
@@ -141,7 +166,13 @@
             document.getElementById(pageId).classList.add('active');
             document.getElementById('window-title').innerText = `C:\\USER\\GONKDROIDEKA\\${pageId.toUpperCase()}.TXT`;
             document.querySelectorAll('.nav-bottom .win95-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            if(btn) btn.classList.add('active');
+        }
+
+        // Helper to trigger navigation from Home Screen cards
+        function triggerNav(targetId) {
+            const btn = document.querySelector(`button[data-target="${targetId}"]`);
+            if (btn) btn.click();
         }
 
         // Media Player Toggle
@@ -160,17 +191,14 @@
         function dragElement(elmnt) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             if (document.getElementById(elmnt.id + "-header")) {
-                // if present, the header is where you move the DIV from:
                 document.getElementById(elmnt.id + "-header").onmousedown = dragMouseDown;
             } else {
-                // otherwise, move the DIV from anywhere inside the DIV:
                 elmnt.onmousedown = dragMouseDown;
             }
 
             function dragMouseDown(e) {
                 e = e || window.event;
                 e.preventDefault();
-                // get the mouse cursor position at startup:
                 pos3 = e.clientX;
                 pos4 = e.clientY;
                 document.onmouseup = closeDragElement;
@@ -180,18 +208,15 @@
             function elementDrag(e) {
                 e = e || window.event;
                 e.preventDefault();
-                // calculate the new cursor position:
                 pos1 = pos3 - e.clientX;
                 pos2 = pos4 - e.clientY;
                 pos3 = e.clientX;
                 pos4 = e.clientY;
-                // set the element's new position:
                 elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
                 elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
             }
 
             function closeDragElement() {
-                // stop moving when mouse button is released:
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
