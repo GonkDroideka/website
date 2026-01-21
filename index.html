@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rithvik Ram // Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Retro Fonts -->
-    <link href="[https://fonts.googleapis.com/css2?family=MS+Sans+Serif&family=VT323&display=swap](https://fonts.googleapis.com/css2?family=MS+Sans+Serif&family=VT323&display=swap)" rel="stylesheet">
+    <!-- Retro Fonts: Press Start 2P (Header), MS Sans Serif (UI), VT323 (Terminal) -->
+    <link href="[https://fonts.googleapis.com/css2?family=Press+Start+2P&family=MS+Sans+Serif&family=VT323&display=swap](https://fonts.googleapis.com/css2?family=Press+Start+2P&family=MS+Sans+Serif&family=VT323&display=swap)" rel="stylesheet">
 </head>
 <body>
     <div class="crt-overlay"></div>
@@ -19,7 +19,7 @@
 
     <div class="desktop">
         
-        <!-- Top Right Media Launcher -->
+        <!-- Top Right Media Launcher (Fixed Position) -->
         <button class="win95-btn music-launcher" onclick="toggleMediaPlayer()">
             ♫ Media Player
         </button>
@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <!-- Main Content Window -->
+        <!-- Main Content Window (Now Expands with Content) -->
         <div class="window main-window">
             <div class="title-bar">
                 <div class="title" id="window-title">Rithvik Ram - Portfolio</div>
@@ -57,7 +57,7 @@
                 <!-- PAGE: HOME -->
                 <div id="home" class="page active">
                     <div class="hero-section animate-up">
-                        <!-- Spiced up Glitch Header -->
+                        <!-- New Retro Font Header -->
                         <h1 class="glitch-header" data-text="Rithvik Ram">Rithvik Ram</h1>
                         <p class="subtitle">IT Infrastructure | Web Design | Media Production</p>
                         <hr class="win-divider">
@@ -188,7 +188,7 @@
             </div>
         </div>
 
-        <!-- Bottom Taskbar Navigation -->
+        <!-- Bottom Taskbar Navigation (Fixed) -->
         <div class="nav-bottom">
             <button class="win95-btn active" data-target="home" onclick="showPage('home', this)">Home</button>
             <button class="win95-btn" data-target="about" onclick="showPage('about', this)">About</button>
@@ -232,35 +232,29 @@
                 document.querySelectorAll('.nav-bottom .win95-btn').forEach(b => b.classList.remove('active'));
                 if(btn) btn.classList.add('active');
                 
-            }, 250); // Swap content after 250ms
+            }, 250); 
 
             // 3. Remove transition class to "Turn On"
             setTimeout(() => {
                 contentArea.classList.remove('screen-transition');
-            }, 500); // Total animation duration
+            }, 500); 
         }
 
-        // Helper to trigger navigation from Home Screen cards
         function triggerNav(targetId) {
             const btn = document.querySelector(`button[data-target="${targetId}"]`);
             if (btn) btn.click();
         }
 
-        // Contact Form Mailto Handler
         function sendEmail(e) {
             e.preventDefault();
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-
-            // Construct mailto link
             const mailtoLink = `mailto:rithvik2001@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
-            
             window.location.href = mailtoLink;
         }
 
-        // Media Player Toggle
         function toggleMediaPlayer() {
             const player = document.getElementById('media-player');
             if (player.style.display === 'none') {
@@ -270,7 +264,7 @@
             }
         }
 
-        // Draggable Window Logic (Same as before)
+        // Draggable Window Logic
         dragElement(document.getElementById("media-player"));
         function dragElement(elmnt) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -305,3 +299,4 @@
     </script>
 </body>
 </html>
+
