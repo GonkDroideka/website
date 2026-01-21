@@ -193,14 +193,20 @@
     </div>
 
     <script>
-        // Navigation Logic with Retro Transition
-        function showPage(pageId, btn) {
+        // === UPDATED NAVIGATION LOGIC ===
+        
+        function showPage(pageId, btn, pushToHistory = true) {
             const contentArea = document.getElementById('main-content-area');
             
-            // 1. Trigger the CRT "Turn Off" animation
+            // 1. Update URL Hash (Deep Linking)
+            if (pushToHistory) {
+                history.pushState({ pageId: pageId }, null, `#${pageId}`);
+            }
+
+            // 2. Trigger the CRT "Turn Off" animation
             contentArea.classList.add('screen-transition');
 
-            // 2. Wait for the squashing animation (halfway point)
+            // 3. Wait for the squashing animation (halfway point)
             setTimeout(() => {
                 // Hide all pages
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -222,11 +228,18 @@
 
                 // Update Bottom Buttons
                 document.querySelectorAll('.nav-bottom .win95-btn').forEach(b => b.classList.remove('active'));
-                if(btn) btn.classList.add('active');
+                
+                // If btn is passed, activate it. If not (loaded from URL), find it.
+                if (btn) {
+                    btn.classList.add('active');
+                } else {
+                    const navBtn = document.querySelector(`.nav-bottom button[data-target="${pageId}"]`);
+                    if(navBtn) navBtn.classList.add('active');
+                }
                 
             }, 250); 
 
-            // 3. Remove transition class to "Turn On"
+            // 4. Remove transition class to "Turn On"
             setTimeout(() => {
                 contentArea.classList.remove('screen-transition');
             }, 500); 
@@ -237,6 +250,24 @@
             if (btn) btn.click();
         }
 
+        // === HANDLE PAGE LOAD & BACK BUTTON ===
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1); // remove #
+            if (hash && document.getElementById(hash)) {
+                showPage(hash, null, false); // Don't push to history on initial load
+            }
+        });
+
+        window.addEventListener('popstate', (event) => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash, null, false); // Don't push to history on back button
+            } else {
+                showPage('home', null, false);
+            }
+        });
+
+        // Media Player Toggle
         function toggleMediaPlayer() {
             const player = document.getElementById('media-player');
             if (player.style.display === 'none') {
@@ -281,3 +312,4 @@
     </script>
 </body>
 </html>
+
