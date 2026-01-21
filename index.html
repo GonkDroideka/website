@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gonk_OS // Rithvik_Ram</title>
+    <title>Rithvik Ram // Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- Retro Fonts -->
     <link href="[https://fonts.googleapis.com/css2?family=MS+Sans+Serif&family=VT323&display=swap](https://fonts.googleapis.com/css2?family=MS+Sans+Serif&family=VT323&display=swap)" rel="stylesheet">
@@ -21,20 +21,20 @@
         
         <!-- Top Right Media Launcher -->
         <button class="win95-btn music-launcher" onclick="toggleMediaPlayer()">
-            ♫ MEDIA_PLAYER
+            ♫ Media Player
         </button>
 
         <!-- Draggable Media Player Window -->
         <div id="media-player" class="window draggable-window" style="display: none; top: 20%; left: 70%;">
             <div class="title-bar" id="media-player-header">
-                <div class="title">WINAMP.EXE</div>
+                <div class="title">Winamp</div>
                 <div class="controls">
                     <span onclick="toggleMediaPlayer()" style="cursor: pointer;">×</span>
                 </div>
             </div>
             <div class="content media-content">
-                <p><strong>NOW PLAYING:</strong></p>
-                <p class="scrolling-text">Synthwave Mix Vol. 1 - Neon Nights...</p>
+                <p><strong>Now Playing:</strong></p>
+                <p class="scrolling-text">Synthwave Mix Vol. 1...</p>
                 <div class="media-controls">
                     <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').play()">►</button>
                     <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').pause()">||</button>
@@ -47,7 +47,7 @@
         <!-- Main Content Window -->
         <div class="window main-window">
             <div class="title-bar">
-                <div class="title" id="window-title">C:\USER\GONKDROIDEKA\HOME.TXT</div>
+                <div class="title" id="window-title">Rithvik Ram - Portfolio</div>
                 <div class="controls">
                     <span>_</span><span>□</span><span>×</span>
                 </div>
@@ -56,106 +56,119 @@
             <div class="content">
                 <!-- PAGE: HOME -->
                 <div id="home" class="page active">
-                    <div class="hero-section">
-                        <h1 class="neon-text flicker-slow">Gonk_OS v1.0</h1>
-                        <p class="typing-text">> USER: Rithvik_Ram // STATUS: ONLINE_</p>
+                    <div class="hero-section animate-up">
+                        <h1 class="retro-header">Rithvik Ram</h1>
+                        <p class="subtitle">IT Infrastructure | Web Design | Media Production</p>
+                        <hr class="win-divider">
                     </div>
 
-                    <div class="skill-grid">
+                    <div class="skill-grid animate-up-delay">
                         <!-- Tech Card -->
-                        <div class="skill-card" onclick="triggerNav('services')">
+                        <div class="skill-card" onclick="triggerNav('projects')">
                             <div class="card-icon">💻</div>
-                            <h3>SYSTEMS & CODE</h3>
+                            <h3>Systems & Code</h3>
                             <p>Web Design, CS Fundamentals, & IT Infrastructure.</p>
-                            <span class="link-text">>> EXECUTE_SERVICES</span>
+                            <span class="link-text">View Projects →</span>
                         </div>
 
                         <!-- Creative Card -->
-                        <div class="skill-card" onclick="triggerNav('music')">
-                            <div class="card-icon">🎸</div>
-                            <h3>A/V PRODUCTION</h3>
-                            <p>Analog Film Photography & Guitar Composition.</p>
-                            <span class="link-text">>> LOAD_MEDIA</span>
+                        <div class="skill-card" onclick="triggerNav('media')">
+                            <div class="card-icon">🎬</div>
+                            <h3>Media Production</h3>
+                            <p>Film Making, Guitar & Bass Composition.</p>
+                            <span class="link-text">View Media →</span>
                         </div>
 
                         <!-- Tutoring Card -->
-                        <div class="skill-card" onclick="triggerNav('about')">
+                        <div class="skill-card" onclick="triggerNav('services')">
                             <div class="card-icon">🎓</div>
-                            <h3>MENTORSHIP</h3>
-                            <p>Tutoring in logic, code, and technical systems.</p>
-                            <span class="link-text">>> ACCESS_BIO</span>
+                            <h3>Tutoring</h3>
+                            <p>Mentorship in Logic, Code, and Music.</p>
+                            <span class="link-text">View Services →</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- PAGE: ABOUT -->
                 <div id="about" class="page">
-                    <h2>[ ABOUT_ME ]</h2>
-                    <p>I graduated with a CS degree, but I'm more interested in how systems *feel* than just how they run. I'm a fan of legacy OS vibes, droid-tier hardware (shoutout Gonk), and automated workflows.</p>
+                    <h2>About Me</h2>
+                    <p>I graduated with a CS degree, but I'm more interested in how systems *feel* than just how they run. I'm a fan of legacy OS vibes, droid-tier hardware, and automated workflows.</p>
                     <p>By day, I'm navigating IT infrastructure and cloud deployments in Reno, NV.</p>
-                    <p>I also offer tutoring services for those just starting their journey into tech.</p>
                 </div>
 
                 <!-- PAGE: SERVICES -->
                 <div id="services" class="page">
-                    <h2>[ SERVICES_OFFERED ]</h2>
+                    <h2>Services Offered</h2>
                     <ul>
                         <li><strong>Cloud Architecture:</strong> Azure & AWS deployment strategies.</li>
                         <li><strong>System Administration:</strong> Windows Server, AD, & Linux management.</li>
-                        <li><strong>Automation:</strong> PowerShell & Bash scripting to kill manual tasks.</li>
-                        <li><strong>Web Dev:</strong> Retro-styled frontends with modern backends.</li>
+                        <li><strong>Web Development:</strong> Retro-styled frontends with modern backends.</li>
+                        <li><strong>Technical Tutoring:</strong> Mentorship in Computer Science logic and coding basics.</li>
+                        <li><strong>Music Instruction:</strong> Private lessons for Guitar and Bass.</li>
                     </ul>
                 </div>
 
                 <!-- PAGE: PROJECTS -->
                 <div id="projects" class="page">
-                    <h2>[ RECENT_DATA_DUMPS ]</h2>
-                    <ul>
-                        <li><strong>Azure Static Resume:</strong> You're looking at it. CI/CD via GitHub Actions.</li>
-                        <li><strong>PowerShell Automations:</strong> Scripts to keep the chaos organized.</li>
-                        <li><strong>Homelab Alpha:</strong> Running a Windows Server / AD environment for testing.</li>
-                    </ul>
+                    <h2>Recent Projects</h2>
+                    <div class="project-item">
+                        <h3>Azure Static Resume</h3>
+                        <p>You're looking at it. A CI/CD deployed portfolio using GitHub Actions.</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>PowerShell Automation</h3>
+                        <p>Scripts developed to automate Active Directory user management.</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Homelab Environment</h3>
+                        <p>Running a Windows Server / AD environment for testing security policies.</p>
+                    </div>
                 </div>
 
-                <!-- PAGE: MUSIC -->
-                <div id="music" class="page">
-                    <h2>[ SONIC_WAVES ]</h2>
-                    <p>Current playlist: Synthwave / Lo-Fi / 16-Bit OSTs.</p>
-                    <p>Open the Media Player in the top right to control playback.</p>
-                </div>
+                <!-- PAGE: MEDIA (Merged Music & Film) -->
+                <div id="media" class="page">
+                    <h2>Media Production</h2>
+                    
+                    <div class="media-section">
+                        <h3>Film & Video</h3>
+                        <p>Independent filmmaking and visual storytelling. Archiving visual inspiration from 80s sci-fi and analog horror.</p>
+                        <!-- Add YouTube embeds or image links here later -->
+                    </div>
 
-                <!-- PAGE: FILM -->
-                <div id="film" class="page">
-                    <h2>[ VISUAL_FEEDS ]</h2>
-                    <p>Archiving visual inspiration from 80s sci-fi and analog horror.</p>
+                    <hr class="win-divider">
+
+                    <div class="media-section">
+                        <h3>Music (Guitar & Bass)</h3>
+                        <p>Composition and performance. Currently exploring Synthwave, Lo-Fi, and 16-Bit OSTs.</p>
+                        <p><em>Check the Media Player in the top right for a demo track.</em></p>
+                    </div>
                 </div>
 
                 <!-- PAGE: EVENTS -->
                 <div id="events" class="page">
-                    <h2>[ SYSTEM_CALENDAR ]</h2>
-                    <p>Next Deployment: AZ-900 Certification Review.</p>
-                    <p>Location: Reno, NV Sector.</p>
+                    <h2>Calendar</h2>
+                    <p><strong>Next Goal:</strong> AZ-900 Certification Review.</p>
+                    <p><strong>Location:</strong> Reno, NV.</p>
                 </div>
 
                 <!-- PAGE: CONTACT -->
                 <div id="contact" class="page">
-                    <h2>[ COMMS_CHANNEL ]</h2>
-                    <p>Send a packet to: <a href="mailto:your@email.com" class="win-link">GONK@RENO_NV.NET</a></p>
-                    <p>Signal: <a href="[https://linkedin.com](https://linkedin.com)" class="win-link">LINKEDIN</a></p>
+                    <h2>Contact Me</h2>
+                    <p>Email: <a href="mailto:your@email.com" class="win-link">ritvik@example.com</a></p>
+                    <p>LinkedIn: <a href="[https://linkedin.com](https://linkedin.com)" class="win-link">View Profile</a></p>
                 </div>
             </div>
         </div>
 
         <!-- Bottom Taskbar Navigation -->
         <div class="nav-bottom">
-            <button class="win95-btn active" data-target="home" onclick="showPage('home', this)">HOME</button>
-            <button class="win95-btn" data-target="about" onclick="showPage('about', this)">ABOUT</button>
-            <button class="win95-btn" data-target="services" onclick="showPage('services', this)">SERVICES</button>
-            <button class="win95-btn" data-target="projects" onclick="showPage('projects', this)">PROJECTS</button>
-            <button class="win95-btn" data-target="music" onclick="showPage('music', this)">MUSIC</button>
-            <button class="win95-btn" data-target="film" onclick="showPage('film', this)">FILM</button>
-            <button class="win95-btn" data-target="events" onclick="showPage('events', this)">EVENTS</button>
-            <button class="win95-btn" data-target="contact" onclick="showPage('contact', this)">CONTACT</button>
+            <button class="win95-btn active" data-target="home" onclick="showPage('home', this)">Home</button>
+            <button class="win95-btn" data-target="about" onclick="showPage('about', this)">About</button>
+            <button class="win95-btn" data-target="services" onclick="showPage('services', this)">Services</button>
+            <button class="win95-btn" data-target="projects" onclick="showPage('projects', this)">Projects</button>
+            <button class="win95-btn" data-target="media" onclick="showPage('media', this)">Media</button>
+            <button class="win95-btn" data-target="events" onclick="showPage('events', this)">Events</button>
+            <button class="win95-btn" data-target="contact" onclick="showPage('contact', this)">Contact</button>
         </div>
     </div>
 
@@ -164,7 +177,19 @@
         function showPage(pageId, btn) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            document.getElementById('window-title').innerText = `C:\\USER\\GONKDROIDEKA\\${pageId.toUpperCase()}.TXT`;
+            
+            // Update Title Bar
+            const titles = {
+                'home': 'Rithvik Ram - Portfolio',
+                'about': 'About Me',
+                'services': 'Services',
+                'projects': 'Projects',
+                'media': 'Media Production',
+                'events': 'Events',
+                'contact': 'Contact'
+            };
+            document.getElementById('window-title').innerText = titles[pageId] || 'Portfolio';
+
             document.querySelectorAll('.nav-bottom .win95-btn').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
         }

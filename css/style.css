@@ -110,7 +110,7 @@ body {
     margin: 4px;
     padding: 20px;
     height: 350px;
-    overflow-y: auto;
+    overflow-y: auto; /* Scroll Wheel Support */
     color: #000;
 }
 
@@ -118,6 +118,26 @@ body {
 .hero-section {
     text-align: center;
     margin-bottom: 25px;
+}
+
+.retro-header {
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #444;
+    margin-top: 0;
+}
+
+.win-divider {
+    border: 0;
+    border-top: 2px solid #808080;
+    border-bottom: 2px solid #fff;
+    margin: 15px 0;
 }
 
 .skill-grid {
@@ -157,40 +177,31 @@ body {
 
 .card-icon { font-size: 2rem; }
 .link-text {
-    font-family: 'VT323', monospace;
+    font-family: 'MS Sans Serif', sans-serif;
     color: #000080;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
     display: block;
 }
 
-/* Animations */
-.neon-text {
-    font-family: 'VT323', monospace;
-    color: var(--neon-pink);
-    text-shadow: 2px 2px 0px #000;
-    font-size: 3rem;
-    margin: 0;
+/* New Staggered Fade-Up Animations */
+.animate-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease-out forwards;
 }
 
-.typing-text {
-    font-family: 'VT323', monospace;
-    font-size: 1.4rem;
-    color: #000;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid var(--neon-cyan);
-    width: 0;
-    animation: typing 3s steps(30, end) forwards, blink .75s step-end infinite;
+.animate-up-delay {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease-out 0.3s forwards; /* 0.3s delay */
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes blink {
-    from, to { border-color: transparent }
-    50% { border-color: var(--neon-cyan) }
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Media Player & Other */
@@ -211,7 +222,7 @@ body {
 .page { display: none; }
 .page.active { display: block; animation: fadeIn 0.3s; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.win-link { color: var(--win-blue); }
+.win-link { color: var(--win-blue); font-weight: bold; }
 .scanlines {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
