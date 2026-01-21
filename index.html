@@ -148,41 +148,33 @@
                     <p><strong>Location:</strong> Reno, NV.</p>
                 </div>
 
-                <!-- PAGE: CONTACT -->
+                <!-- PAGE: CONTACT (UPDATED) -->
                 <div id="contact" class="page">
                     <h2>Contact Me</h2>
                     
-                    <div class="contact-container">
-                        <div class="social-links">
-                            <!-- GitHub Image Link -->
-                            <a href="[https://github.com/GonkDroideka](https://github.com/GonkDroideka)" target="_blank" class="social-btn">
-                                <img src="[https://img.icons8.com/dusk/64/000000/github.png](https://img.icons8.com/dusk/64/000000/github.png)" alt="GitHub">
-                                <span>Check out my GitHub</span>
+                    <div class="contact-container" style="text-align: center; margin-top: 30px;">
+                        <p>Open communication channels:</p>
+                        
+                        <div class="contact-grid">
+                            <!-- Email Button -->
+                            <a href="mailto:rithvik2001@gmail.com" class="win95-btn large-btn">
+                                <span class="contact-icon">📧</span>
+                                <div class="btn-text">
+                                    <strong>Email Me</strong><br>
+                                    <small>rithvik2001@gmail.com</small>
+                                </div>
+                            </a>
+
+                            <!-- GitHub Button -->
+                            <a href="[https://github.com/GonkDroideka](https://github.com/GonkDroideka)" target="_blank" class="win95-btn large-btn">
+                                <!-- GitHub Icon -->
+                                <img src="[https://img.icons8.com/dusk/64/000000/github.png](https://img.icons8.com/dusk/64/000000/github.png)" alt="GitHub" class="contact-img">
+                                <div class="btn-text">
+                                    <strong>GitHub</strong><br>
+                                    <small>@GonkDroideka</small>
+                                </div>
                             </a>
                         </div>
-
-                        <hr class="win-divider">
-
-                        <h3>Direct Message</h3>
-                        <form id="contact-form" class="win95-form" onsubmit="sendEmail(event)">
-                            <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" id="name" required class="win95-input">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" id="email" required class="win95-input">
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Subject:</label>
-                                <input type="text" id="subject" required class="win95-input">
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message:</label>
-                                <textarea id="message" rows="4" required class="win95-input"></textarea>
-                            </div>
-                            <button type="submit" class="win95-btn">Send Message</button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -245,16 +237,6 @@
             if (btn) btn.click();
         }
 
-        function sendEmail(e) {
-            e.preventDefault();
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const mailtoLink = `mailto:rithvik2001@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
-            window.location.href = mailtoLink;
-        }
-
         function toggleMediaPlayer() {
             const player = document.getElementById('media-player');
             if (player.style.display === 'none') {
@@ -299,4 +281,3 @@
     </script>
 </body>
 </html>
-
