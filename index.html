@@ -53,11 +53,12 @@
                 </div>
             </div>
             
-            <div class="content">
+            <div class="content" id="main-content-area">
                 <!-- PAGE: HOME -->
                 <div id="home" class="page active">
                     <div class="hero-section animate-up">
-                        <h1 class="retro-header">Rithvik Ram</h1>
+                        <!-- Spiced up Glitch Header -->
+                        <h1 class="glitch-header" data-text="Rithvik Ram">Rithvik Ram</h1>
                         <p class="subtitle">IT Infrastructure | Web Design | Media Production</p>
                         <hr class="win-divider">
                     </div>
@@ -125,18 +126,14 @@
                     </div>
                 </div>
 
-                <!-- PAGE: MEDIA (Merged Music & Film) -->
+                <!-- PAGE: MEDIA -->
                 <div id="media" class="page">
                     <h2>Media Production</h2>
-                    
                     <div class="media-section">
                         <h3>Film & Video</h3>
                         <p>Independent filmmaking and visual storytelling. Archiving visual inspiration from 80s sci-fi and analog horror.</p>
-                        <!-- Add YouTube embeds or image links here later -->
                     </div>
-
                     <hr class="win-divider">
-
                     <div class="media-section">
                         <h3>Music (Guitar & Bass)</h3>
                         <p>Composition and performance. Currently exploring Synthwave, Lo-Fi, and 16-Bit OSTs.</p>
@@ -154,8 +151,39 @@
                 <!-- PAGE: CONTACT -->
                 <div id="contact" class="page">
                     <h2>Contact Me</h2>
-                    <p>Email: <a href="mailto:your@email.com" class="win-link">ritvik@example.com</a></p>
-                    <p>LinkedIn: <a href="[https://linkedin.com](https://linkedin.com)" class="win-link">View Profile</a></p>
+                    
+                    <div class="contact-container">
+                        <div class="social-links">
+                            <!-- GitHub Image Link -->
+                            <a href="[https://github.com/GonkDroideka](https://github.com/GonkDroideka)" target="_blank" class="social-btn">
+                                <img src="[https://img.icons8.com/dusk/64/000000/github.png](https://img.icons8.com/dusk/64/000000/github.png)" alt="GitHub">
+                                <span>Check out my GitHub</span>
+                            </a>
+                        </div>
+
+                        <hr class="win-divider">
+
+                        <h3>Direct Message</h3>
+                        <form id="contact-form" class="win95-form" onsubmit="sendEmail(event)">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" required class="win95-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" required class="win95-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject:</label>
+                                <input type="text" id="subject" required class="win95-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message:</label>
+                                <textarea id="message" rows="4" required class="win95-input"></textarea>
+                            </div>
+                            <button type="submit" class="win95-btn">Send Message</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -173,31 +201,63 @@
     </div>
 
     <script>
-        // Navigation Logic
+        // Navigation Logic with Retro Transition
         function showPage(pageId, btn) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+            const contentArea = document.getElementById('main-content-area');
             
-            // Update Title Bar
-            const titles = {
-                'home': 'Rithvik Ram - Portfolio',
-                'about': 'About Me',
-                'services': 'Services',
-                'projects': 'Projects',
-                'media': 'Media Production',
-                'events': 'Events',
-                'contact': 'Contact'
-            };
-            document.getElementById('window-title').innerText = titles[pageId] || 'Portfolio';
+            // 1. Trigger the CRT "Turn Off" animation
+            contentArea.classList.add('screen-transition');
 
-            document.querySelectorAll('.nav-bottom .win95-btn').forEach(b => b.classList.remove('active'));
-            if(btn) btn.classList.add('active');
+            // 2. Wait for the squashing animation (halfway point)
+            setTimeout(() => {
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                
+                // Show selected page
+                document.getElementById(pageId).classList.add('active');
+
+                // Update Title Bar
+                const titles = {
+                    'home': 'Rithvik Ram - Portfolio',
+                    'about': 'About Me',
+                    'services': 'Services',
+                    'projects': 'Projects',
+                    'media': 'Media Production',
+                    'events': 'Events',
+                    'contact': 'Contact'
+                };
+                document.getElementById('window-title').innerText = titles[pageId] || 'Portfolio';
+
+                // Update Bottom Buttons
+                document.querySelectorAll('.nav-bottom .win95-btn').forEach(b => b.classList.remove('active'));
+                if(btn) btn.classList.add('active');
+                
+            }, 250); // Swap content after 250ms
+
+            // 3. Remove transition class to "Turn On"
+            setTimeout(() => {
+                contentArea.classList.remove('screen-transition');
+            }, 500); // Total animation duration
         }
 
         // Helper to trigger navigation from Home Screen cards
         function triggerNav(targetId) {
             const btn = document.querySelector(`button[data-target="${targetId}"]`);
             if (btn) btn.click();
+        }
+
+        // Contact Form Mailto Handler
+        function sendEmail(e) {
+            e.preventDefault();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            // Construct mailto link
+            const mailtoLink = `mailto:rithvik2001@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
+            
+            window.location.href = mailtoLink;
         }
 
         // Media Player Toggle
@@ -210,9 +270,8 @@
             }
         }
 
-        // Draggable Window Logic
+        // Draggable Window Logic (Same as before)
         dragElement(document.getElementById("media-player"));
-
         function dragElement(elmnt) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             if (document.getElementById(elmnt.id + "-header")) {
@@ -220,7 +279,6 @@
             } else {
                 elmnt.onmousedown = dragMouseDown;
             }
-
             function dragMouseDown(e) {
                 e = e || window.event;
                 e.preventDefault();
@@ -229,7 +287,6 @@
                 document.onmouseup = closeDragElement;
                 document.onmousemove = elementDrag;
             }
-
             function elementDrag(e) {
                 e = e || window.event;
                 e.preventDefault();
@@ -240,7 +297,6 @@
                 elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
                 elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
             }
-
             function closeDragElement() {
                 document.onmouseup = null;
                 document.onmousemove = null;

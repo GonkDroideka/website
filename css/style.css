@@ -110,21 +110,78 @@ body {
     margin: 4px;
     padding: 20px;
     height: 350px;
-    overflow-y: auto; /* Scroll Wheel Support */
+    overflow-y: auto;
     color: #000;
+}
+
+/* === NEW: RETRO SCREEN TRANSITION === */
+.screen-transition {
+    animation: turn-off-on 0.5s ease-in-out;
+}
+
+@keyframes turn-off-on {
+    0% { transform: scaleY(1); opacity: 1; filter: brightness(1); }
+    50% { transform: scaleY(0.01); opacity: 0.5; filter: brightness(5); }
+    100% { transform: scaleY(1); opacity: 1; filter: brightness(1); }
+}
+
+/* === NEW: GLITCH HEADER === */
+.glitch-header {
+    font-family: 'VT323', monospace;
+    font-size: 3.5rem;
+    color: #000;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.glitch-header::before,
+.glitch-header::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff; /* Match background to hide original */
+}
+
+.glitch-header::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-header::after {
+    left: -2px;
+    text-shadow: -1px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(11px, 9999px, 26px, 0); }
+    20% { clip: rect(84px, 9999px, 9px, 0); }
+    40% { clip: rect(31px, 9999px, 78px, 0); }
+    60% { clip: rect(14px, 9999px, 57px, 0); }
+    80% { clip: rect(38px, 9999px, 20px, 0); }
+    100% { clip: rect(69px, 9999px, 95px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(2px, 9999px, 19px, 0); }
+    20% { clip: rect(56px, 9999px, 34px, 0); }
+    40% { clip: rect(12px, 9999px, 49px, 0); }
+    60% { clip: rect(65px, 9999px, 81px, 0); }
+    80% { clip: rect(3px, 9999px, 66px, 0); }
+    100% { clip: rect(92px, 9999px, 14px, 0); }
 }
 
 /* Home Screen Dashboard */
 .hero-section {
     text-align: center;
     margin-bottom: 25px;
-}
-
-.retro-header {
-    font-family: 'MS Sans Serif', sans-serif;
-    font-size: 2rem;
-    color: #000;
-    margin-bottom: 5px;
 }
 
 .subtitle {
@@ -184,24 +241,55 @@ body {
     display: block;
 }
 
-/* New Staggered Fade-Up Animations */
-.animate-up {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.6s ease-out forwards;
-}
+/* Animations */
+.animate-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s ease-out forwards; }
+.animate-up-delay { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s ease-out 0.3s forwards; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-.animate-up-delay {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.6s ease-out 0.3s forwards; /* 0.3s delay */
+/* === NEW: CONTACT FORM STYLES === */
+.contact-container {
+    max-width: 500px;
+    margin: 0 auto;
 }
+.social-links {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    border: 2px solid transparent;
+    padding: 5px;
+}
+.social-btn:hover {
+    background: #e0e0e0;
+    border: 2px dotted #000;
+}
+.social-btn img { width: 40px; height: 40px; }
 
-@keyframes fadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.win95-form .form-group {
+    margin-bottom: 15px;
+}
+.win95-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.win95-input {
+    width: 100%;
+    padding: 5px;
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080; /* Inset effect */
+    background: #fff;
+    font-family: 'MS Sans Serif', sans-serif;
+    box-sizing: border-box;
+}
+.win95-input:focus {
+    outline: 1px dotted #000;
 }
 
 /* Media Player & Other */
@@ -212,12 +300,7 @@ body {
     font-family: 'VT323', monospace;
     text-align: center;
 }
-.media-controls {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-top: 10px;
-}
+.media-controls { display: flex; justify-content: center; gap: 5px; margin-top: 10px; }
 .small-btn { min-width: 30px; padding: 2px 5px; }
 .page { display: none; }
 .page.active { display: block; animation: fadeIn 0.3s; }
