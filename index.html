@@ -43,15 +43,58 @@
             margin-bottom: 5px;
             font-size: 0.95rem;
         }
+        
+        /* Video Embed Styles */
+        .video-container {
+            margin-bottom: 25px;
+            border: 2px solid #808080;
+            padding: 5px;
+            background: #c0c0c0;
+        }
+        .video-desc {
+            margin-top: 10px;
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 0.9rem;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #808080;
+            box-shadow: inset 1px 1px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* Music Playlist Styles */
+        .playlist-container {
+            background: #000;
+            color: #0f0;
+            font-family: 'VT323', monospace;
+            padding: 10px;
+            border: 2px solid #808080;
+            box-shadow: inset 2px 2px 5px #000;
+        }
+        .track-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px dashed #004400;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .track-item:hover {
+            background: #003300;
+            color: #fff;
+        }
+        .track-icon { margin-right: 10px; }
+        .track-info { flex-grow: 1; }
+        .track-play { font-size: 0.8rem; opacity: 0.7; }
+
     </style>
 </head>
 <body>
     <div class="crt-overlay"></div>
     <div class="scanlines"></div>
 
-    <!-- Audio Element (Hidden) -->
+    <!-- Audio Element (Dynamic Source) -->
     <audio id="bg-music" loop>
-        <source src="music/track.mp3" type="audio/mpeg">
+        <source src="music/Big_Boi_KLICKAUD.mp3" type="audio/mpeg">
     </audio>
 
     <div class="desktop">
@@ -71,7 +114,7 @@
             </div>
             <div class="content media-content">
                 <p><strong>Now Playing:</strong></p>
-                <p class="scrolling-text">Synthwave Mix Vol. 1...</p>
+                <p class="scrolling-text" id="player-track-name">Select a track from Media page...</p>
                 <div class="media-controls">
                     <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').play()"><i class="fas fa-play"></i></button>
                     <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').pause()"><i class="fas fa-pause"></i></button>
@@ -244,16 +287,6 @@
                             <li>Managed the full Software Development Life Cycle (SDLC) over a 10-week sprint, including debugging, refactoring, and version control via Git.</li>
                         </ul>
                     </div>
-
-                    <div class="win-panel">
-                        <h3>Azure Cloud Resume</h3>
-                        <div class="date-loc">CI/CD & Cloud Infrastructure</div>
-                        <ul class="project-list">
-                            <li>Deployed a responsive portfolio website using Azure Static Web Apps.</li>
-                            <li>Implemented CI/CD pipelines using GitHub Actions for automated deployment.</li>
-                            <li>Utilized custom domain configuration and HTTPS security.</li>
-                        </ul>
-                    </div>
                 </div>
 
                 <!-- PAGE: MEDIA -->
@@ -262,15 +295,62 @@
                     
                     <div class="win-panel">
                         <h3><i class="fas fa-video"></i> Film & Video</h3>
-                        <p>Independent filmmaking and visual storytelling. Currently archiving visual inspiration from 80s sci-fi and analog horror aesthetics.</p>
-                        <p><em>(Video portfolio gallery coming soon...)</em></p>
+                        
+                        <!-- Video 1 -->
+                        <div class="video-container">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/ySWZ54rNTOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <div class="video-desc">
+                                <strong>Director's Note:</strong><br>
+                                This is the very first film I directed with a small skeleton crew. Well I hope you like disco, baby.
+                            </div>
+                        </div>
+
+                        <!-- Video 2 -->
+                        <div class="video-container">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/VRMs1nPJ42U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <div class="video-desc">
+                                <strong>Kung-Fools</strong><br><br>
+                                A lone warrior. A deadly enemy. A showdown years in the making.<br><br>
+                                Fresh out of Shaolin training, Sammo arrives at a quiet field to face the man who murdered his father — the ruthless gang leader, Monkey Jack. When the battle seems lost, a strange lesson from his old master comes back to him... but will it be enough?
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="win-panel">
                         <h3><i class="fas fa-guitar"></i> Music Composition</h3>
-                        <p>Composition and performance specializing in Guitar and Bass. Currently exploring Synthwave, Lo-Fi, and 16-Bit OSTs.</p>
-                        <p><strong>Current Project:</strong> "Neon Horizon" - A 4-track EP exploring retro-futuristic soundscapes.</p>
-                        <p><em>Use the Media Player in the top right to listen to the latest demo.</em></p>
+                        <p style="margin-bottom:15px;">A collection of tracks and covers. Click any track to load it into the system Media Player.</p>
+                        
+                        <div class="playlist-container">
+                            <div class="track-item" onclick="playTrack('Big_Boi_KLICKAUD.mp3', 'Big Boi')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span>
+                                <span class="track-info">Big Boi</span>
+                                <span class="track-play">[LOAD]</span>
+                            </div>
+                            
+                            <div class="track-item" onclick="playTrack('Countess Bathory Cover.mp3', 'Countess Bathory (Cover)')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span>
+                                <span class="track-info">Countess Bathory (Cover)</span>
+                                <span class="track-play">[LOAD]</span>
+                            </div>
+                            
+                            <div class="track-item" onclick="playTrack('Draculas_titties.mp3', 'Eve of the Sabbath')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span>
+                                <span class="track-info">Eve of the Sabbath</span>
+                                <span class="track-play">[LOAD]</span>
+                            </div>
+                            
+                            <div class="track-item" onclick="playTrack('Jam3_trim.mp3', 'Central Cal Jam')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span>
+                                <span class="track-info">Central Cal Jam</span>
+                                <span class="track-play">[LOAD]</span>
+                            </div>
+                            
+                            <div class="track-item" onclick="playTrack('New_World_Order_Growl_FM_Phantom_Liberty_Cyberpunk_2077_KLICKAUD.mp3', 'New World Order')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span>
+                                <span class="track-info">New World Order (Cyberpunk 2077)</span>
+                                <span class="track-play">[LOAD]</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -403,6 +483,26 @@
             }
         }
 
+        // === MUSIC PLAYER LOGIC ===
+        function playTrack(filename, trackName) {
+            const audio = document.getElementById('bg-music');
+            const playerTitle = document.getElementById('player-track-name');
+            const player = document.getElementById('media-player');
+
+            // 1. Update Source
+            audio.src = 'music/' + filename;
+            
+            // 2. Play
+            audio.play().catch(e => console.log("User interaction required first"));
+
+            // 3. Update Display
+            playerTitle.innerText = trackName + '...';
+
+            // 4. Open Player if closed
+            player.style.display = 'block';
+        }
+
+        // Draggable Window Logic
         dragElement(document.getElementById("media-player"));
         function dragElement(elmnt) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
