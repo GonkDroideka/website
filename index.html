@@ -7,6 +7,43 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Retro Fonts: Press Start 2P (Header), MS Sans Serif (UI), VT323 (Terminal) -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=MS+Sans+Serif&family=VT323&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons (No Emojis) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Extra styling for the comprehensive layouts */
+        .win-panel {
+            background: #fff;
+            border: 1px solid #808080;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: inset 1px 1px 4px rgba(0,0,0,0.1);
+        }
+        .win-panel h3 {
+            margin-top: 0;
+            color: var(--win-blue);
+            font-size: 1.1rem;
+            border-bottom: 1px dotted #808080;
+            padding-bottom: 5px;
+        }
+        .win-panel h4 {
+            margin: 10px 0 5px 0;
+            font-size: 1rem;
+        }
+        .date-loc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        .skill-list, .project-list {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        .skill-list li, .project-list li {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+    </style>
 </head>
 <body>
     <div class="crt-overlay"></div>
@@ -21,13 +58,13 @@
         
         <!-- Top Right Media Launcher (Fixed Position) -->
         <button class="win95-btn music-launcher" onclick="toggleMediaPlayer()">
-            ♫ Media Player
+            <i class="fas fa-music"></i> Media Player
         </button>
 
         <!-- Draggable Media Player Window -->
         <div id="media-player" class="window draggable-window" style="display: none; top: 20%; left: 70%;">
             <div class="title-bar" id="media-player-header">
-                <div class="title">Winamp</div>
+                <div class="title"><i class="fas fa-compact-disc"></i> Winamp</div>
                 <div class="controls">
                     <span onclick="toggleMediaPlayer()" style="cursor: pointer;">×</span>
                 </div>
@@ -36,10 +73,10 @@
                 <p><strong>Now Playing:</strong></p>
                 <p class="scrolling-text">Synthwave Mix Vol. 1...</p>
                 <div class="media-controls">
-                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').play()">►</button>
-                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').pause()">||</button>
-                    <button class="win95-btn small-btn">◄◄</button>
-                    <button class="win95-btn small-btn">►►</button>
+                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').play()"><i class="fas fa-play"></i></button>
+                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').pause()"><i class="fas fa-pause"></i></button>
+                    <button class="win95-btn small-btn"><i class="fas fa-backward"></i></button>
+                    <button class="win95-btn small-btn"><i class="fas fa-forward"></i></button>
                 </div>
             </div>
         </div>
@@ -57,96 +94,201 @@
                 <!-- PAGE: HOME -->
                 <div id="home" class="page active">
                     <div class="hero-section animate-up">
-                        <!-- New Retro Font Header -->
                         <h1 class="glitch-header" data-text="Rithvik Ram">Rithvik Ram</h1>
-                        <p class="subtitle">IT Infrastructure | Web Design | Media Production</p>
+                        <p class="subtitle">System Administrator | Cloud Infrastructure | A/V Technician</p>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Reno, NV | <i class="fas fa-envelope"></i> rithvik2001@gmail.com</p>
                         <hr class="win-divider">
                     </div>
 
                     <div class="skill-grid animate-up-delay">
                         <!-- Tech Card -->
                         <div class="skill-card" onclick="triggerNav('projects')">
-                            <div class="card-icon">💻</div>
-                            <h3>Systems & Code</h3>
-                            <p>Web Design, CS Fundamentals, & IT Infrastructure.</p>
-                            <span class="link-text">View Projects →</span>
+                            <div class="card-icon"><i class="fas fa-server"></i></div>
+                            <h3>Systems & Projects</h3>
+                            <p>Active Directory, Windows Server, Virtualization, and Cloud Labs.</p>
+                            <span class="link-text">View Projects <i class="fas fa-arrow-right"></i></span>
                         </div>
 
                         <!-- Creative Card -->
                         <div class="skill-card" onclick="triggerNav('media')">
-                            <div class="card-icon">🎬</div>
-                            <h3>Media Production</h3>
-                            <p>I make movies and play some music. Check it out.</p>
-                            <span class="link-text">View Media →</span>
+                            <div class="card-icon"><i class="fas fa-film"></i></div>
+                            <h3>Media & A/V</h3>
+                            <p>Live Production Support, Audio Mixing, and Creative Content.</p>
+                            <span class="link-text">View Media <i class="fas fa-arrow-right"></i></span>
                         </div>
 
-                        <!-- Tutoring Card -->
+                        <!-- Services Card -->
                         <div class="skill-card" onclick="triggerNav('services')">
-                            <div class="card-icon">🎓</div>
-                            <h3>Tutoring</h3>
-                            <p>Mentorship in Guitar, Bass Guitar, and Coding/Logic.</p>
-                            <span class="link-text">View Services →</span>
+                            <div class="card-icon"><i class="fas fa-toolbox"></i></div>
+                            <h3>Services & Skills</h3>
+                            <p>IT Administration, Automation Scripting, and Technical Tutoring.</p>
+                            <span class="link-text">View Services <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- PAGE: BLOG -->
-                <div id="blog" class="page">
+                <!-- PAGE: ABOUT -->
+                <div id="about" class="page">
                     <h2>About Me</h2>
-                    <p>Blog. I am blogging</p>
-                    <p>Blog Blog.</p>
+                    
+                    <div class="win-panel">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <div class="date-loc">California Polytechnic State University | San Luis Obispo, CA</div>
+                        <ul class="skill-list">
+                            <li><strong>Relevant Coursework:</strong> Systems Architecture, Logic Design, Network Protocols, Operating Systems.</li>
+                        </ul>
+                    </div>
+
+                    <div class="win-panel">
+                        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                        <ul class="skill-list">
+                            <li><strong>CompTIA A+</strong></li>
+                            <li><strong>Microsoft Certified:</strong> Azure Fundamentals AZ-900</li>
+                        </ul>
+                    </div>
+
+                    <div class="win-panel">
+                        <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
+                        
+                        <h4>Stage Technician (A/V Support)</h4>
+                        <div class="date-loc">Performing Arts Center | San Luis Obispo, CA | Apr 2024 - Sept 2024</div>
+                        <ul class="skill-list">
+                            <li><strong>Critical Troubleshooting:</strong> Diagnosed audio signal flow issues and hardware malfunctions during live productions, ensuring 100% system uptime.</li>
+                            <li><strong>System Configuration:</strong> Set up and configured audio mixing consoles, lighting rigs, and power distribution systems based on technical schematics.</li>
+                            <li><strong>Collaboration:</strong> Coordinated with engineering teams to execute complex technical cues under strict time constraints.</li>
+                        </ul>
+
+                        <hr class="win-divider" style="margin: 15px 0;">
+
+                        <h4>Behavior Technician</h4>
+                        <div class="date-loc">Proud Moments ABA | Henderson, NV | Nov 2024 - Present</div>
+                        <ul class="skill-list">
+                            <li><strong>Documentation:</strong> Maintained strict HIPAA-compliant records of client interactions, mirroring IT asset tracking and ticket documentation standards.</li>
+                            <li><strong>Analysis:</strong> Analyzed data trends to adjust operational procedures in real-time.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- PAGE: SERVICES -->
                 <div id="services" class="page">
-                    <h2>Services Offered</h2>
-                    <ul>
-                        <li><strong>Web Development:</strong> Can design websites to meet clients needs .</li>
-                        <li><strong>Technical Tutoring:</strong> Mentorship in Computer Science logic and coding basics.</li>
-                        <li><strong>Music Instruction:</strong> Private lessons for Guitar and Bass.</li>
-                    </ul>
+                    <h2>Services & Technical Skills</h2>
+                    
+                    <div class="win-panel">
+                        <h3><i class="fas fa-network-wired"></i> IT Administration & Networking</h3>
+                        <p>Comprehensive management of enterprise environments.</p>
+                        <ul class="skill-list">
+                            <li><strong>Active Directory (AD DS):</strong> User account management, OUs, and security groups.</li>
+                            <li><strong>Group Policy (GPO):</strong> Enforcing security settings and mapping network drives.</li>
+                            <li><strong>Networking:</strong> TCP/IP, Static IP Addressing, Port Forwarding, Firewall Configuration, Remote Access (RDP/VPN).</li>
+                            <li><strong>Infrastructure:</strong> DNS, DHCP, Windows Server 2019/2022.</li>
+                        </ul>
+                    </div>
+
+                    <div class="win-panel">
+                        <h3><i class="fas fa-terminal"></i> Scripting & Automation</h3>
+                        <p>Reducing manual overhead through code.</p>
+                        <ul class="skill-list">
+                            <li><strong>PowerShell:</strong> Automating administrative tasks and VM lifecycle management.</li>
+                            <li><strong>Batch Scripting & Task Scheduler:</strong> Routine system maintenance automation.</li>
+                        </ul>
+                    </div>
+
+                    <div class="win-panel">
+                        <h3><i class="fas fa-code"></i> Web & Design</h3>
+                        <ul class="skill-list">
+                            <li><strong>Development:</strong> HTML/CSS, C#/.NET Framework.</li>
+                            <li><strong>Design:</strong> UI/UX Prototyping in Figma.</li>
+                        </ul>
+                    </div>
+
+                    <div class="win-panel">
+                        <h3><i class="fas fa-chalkboard-teacher"></i> Tutoring & Instruction</h3>
+                        <ul class="skill-list">
+                            <li><strong>Technical:</strong> Cybersecurity fundamentals (Phishing, 2FA, Password Security).</li>
+                            <li><strong>Music:</strong> Private instruction for Guitar and Bass composition.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- PAGE: PROJECTS -->
                 <div id="projects" class="page">
-                    <h2>Recent Projects</h2>
-                    <div class="project-item">
-                        <h3>Azure Static Resume</h3>
-                        <p>Beans Beans Beans. A CI/CD deployed portfolio using GitHub Actions.</p>
+                    <h2>Technical Projects</h2>
+                    
+                    <div class="win-panel">
+                        <h3>Windows Server Enterprise Lab</h3>
+                        <div class="date-loc">System Administration & Virtualization</div>
+                        <ul class="project-list">
+                            <li>Built a virtualized enterprise network using Hyper-V hosting Windows Server 2019 and Windows 10 clients.</li>
+                            <li>Configured Active Directory Domain Services (AD DS) to manage user accounts, OUs, and security groups.</li>
+                            <li>Deployed DHCP scopes and DNS records to ensure proper network connectivity and name resolution.</li>
+                            <li>Implemented Group Policy Objects (GPOs) to enforce security settings and map network drives across the domain.</li>
+                        </ul>
                     </div>
-                    <div class="project-item">
-                        <h3>PowerShell Automation</h3>
-                        <p>Scripts developed to automate Active Directory user management.</p>
+
+                    <div class="win-panel">
+                        <h3>IT Automation Scripting</h3>
+                        <div class="date-loc">PowerShell & Task Management</div>
+                        <ul class="project-list">
+                            <li>Developed PowerShell scripts to automate routine administrative tasks, including VM lifecycle management (Start/Stop/Snapshot).</li>
+                            <li>Created automated health-check scripts to monitor system uptime and log performance metrics.</li>
+                            <li>Reduced manual configuration time for lab environments by approximately 40% through script execution.</li>
+                        </ul>
                     </div>
-                    <div class="project-item">
-                        <h3>Homelab Environment</h3>
-                        <p>Running a Windows Server / AD environment for testing security policies.</p>
+
+                    <div class="win-panel">
+                        <h3>Interactive Narrative Engine (Senior Thesis)</h3>
+                        <div class="date-loc">C# Development & SDLC</div>
+                        <ul class="project-list">
+                            <li>Engineered a C# event-driven architecture to handle complex state management and JSON data persistence.</li>
+                            <li>Managed the full Software Development Life Cycle (SDLC) over a 10-week sprint, including debugging, refactoring, and version control via Git.</li>
+                        </ul>
+                    </div>
+
+                    <div class="win-panel">
+                        <h3>Azure Cloud Resume</h3>
+                        <div class="date-loc">CI/CD & Cloud Infrastructure</div>
+                        <ul class="project-list">
+                            <li>Deployed a responsive portfolio website using Azure Static Web Apps.</li>
+                            <li>Implemented CI/CD pipelines using GitHub Actions for automated deployment.</li>
+                            <li>Utilized custom domain configuration and HTTPS security.</li>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- PAGE: MEDIA -->
                 <div id="media" class="page">
                     <h2>Media Production</h2>
-                    <div class="media-section">
-                        <h3>Film & Video</h3>
-                        <p>I make stuff (will populate page later).</p>
+                    
+                    <div class="win-panel">
+                        <h3><i class="fas fa-video"></i> Film & Video</h3>
+                        <p>Independent filmmaking and visual storytelling. Currently archiving visual inspiration from 80s sci-fi and analog horror aesthetics.</p>
+                        <p><em>(Video portfolio gallery coming soon...)</em></p>
                     </div>
-                    <hr class="win-divider">
-                    <div class="media-section">
-                        <h3>Music (Guitar & Bass)</h3>
-                        <p>EEEEEEEEEEEEEEEEEEE.</p>
-                        <p><em>Check the Media Player in the top right for a boss ass track.</em></p>
+                    
+                    <div class="win-panel">
+                        <h3><i class="fas fa-guitar"></i> Music Composition</h3>
+                        <p>Composition and performance specializing in Guitar and Bass. Currently exploring Synthwave, Lo-Fi, and 16-Bit OSTs.</p>
+                        <p><strong>Current Project:</strong> "Neon Horizon" - A 4-track EP exploring retro-futuristic soundscapes.</p>
+                        <p><em>Use the Media Player in the top right to listen to the latest demo.</em></p>
                     </div>
                 </div>
 
                 <!-- PAGE: EVENTS -->
                 <div id="events" class="page">
-                    <h2>Calendar</h2>
-                    <p><strong>Upcoming:</strong> Band going on tour.</p>
-                    <p><strong>Location:</strong> Reno, NV.</p>
+                    <h2>System Calendar</h2>
+                    
+                    <div class="win-panel">
+                        <h3><i class="fas fa-calendar-alt"></i> Upcoming</h3>
+                        <ul class="skill-list">
+                            <li><strong>AZ-900 Certification Review:</strong> In Progress</li>
+                            <li><strong>Cybersecurity Seminar:</strong> Instructor for Senior Citizen Community Outreach.</li>
+                            <li><strong>Band Tour:</strong> Regional tour dates TBD.</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- PAGE: CONTACT (UPDATED) -->
+                <!-- PAGE: CONTACT -->
                 <div id="contact" class="page">
                     <h2>Contact Me</h2>
                     
@@ -156,7 +298,7 @@
                         <div class="contact-grid">
                             <!-- Email Button -->
                             <a href="mailto:rithvik2001@gmail.com" class="win95-btn large-btn">
-                                <span class="contact-icon">📧</span>
+                                <span class="contact-icon"><i class="fas fa-envelope"></i></span>
                                 <div class="btn-text">
                                     <strong>Email Me</strong><br>
                                     <small>rithvik2001@gmail.com</small>
@@ -165,8 +307,7 @@
 
                             <!-- GitHub Button -->
                             <a href="https://github.com/GonkDroideka" target="_blank" class="win95-btn large-btn">
-                                <!-- GitHub Icon -->
-                                <img src="https://img.icons8.com/dusk/64/000000/github.png" alt="GitHub" class="contact-img">
+                                <span class="contact-icon"><i class="fab fa-github"></i></span>
                                 <div class="btn-text">
                                     <strong>GitHub</strong><br>
                                     <small>@GonkDroideka</small>
@@ -180,54 +321,44 @@
 
         <!-- Bottom Taskbar Navigation (Fixed) -->
         <div class="nav-bottom">
-            <button class="win95-btn active" data-target="home" onclick="showPage('home', this)">Home</button>
-            <button class="win95-btn" data-target="about" onclick="showPage('blog', this)">Blog</button>
-            <button class="win95-btn" data-target="services" onclick="showPage('services', this)">Services</button>
-            <button class="win95-btn" data-target="projects" onclick="showPage('projects', this)">Projects</button>
-            <button class="win95-btn" data-target="media" onclick="showPage('media', this)">Media</button>
-            <button class="win95-btn" data-target="events" onclick="showPage('events', this)">Events</button>
-            <button class="win95-btn" data-target="contact" onclick="showPage('contact', this)">Contact</button>
+            <button class="win95-btn active" data-target="home" onclick="showPage('home', this)"><i class="fas fa-home"></i> Home</button>
+            <button class="win95-btn" data-target="about" onclick="showPage('about', this)"><i class="fas fa-user"></i> About</button>
+            <button class="win95-btn" data-target="services" onclick="showPage('services', this)"><i class="fas fa-tools"></i> Services</button>
+            <button class="win95-btn" data-target="projects" onclick="showPage('projects', this)"><i class="fas fa-folder-open"></i> Projects</button>
+            <button class="win95-btn" data-target="media" onclick="showPage('media', this)"><i class="fas fa-compact-disc"></i> Media</button>
+            <button class="win95-btn" data-target="events" onclick="showPage('events', this)"><i class="fas fa-calendar"></i> Events</button>
+            <button class="win95-btn" data-target="contact" onclick="showPage('contact', this)"><i class="fas fa-envelope"></i> Contact</button>
         </div>
     </div>
 
     <script>
-        // === UPDATED NAVIGATION LOGIC ===
-        
+        // === NAVIGATION LOGIC ===
         function showPage(pageId, btn, pushToHistory = true) {
             const contentArea = document.getElementById('main-content-area');
             
-            // 1. Update URL Hash (Deep Linking)
             if (pushToHistory) {
                 history.pushState({ pageId: pageId }, null, `#${pageId}`);
             }
 
-            // 2. Trigger the CRT "Turn Off" animation
             contentArea.classList.add('screen-transition');
 
-            // 3. Wait for the squashing animation (halfway point)
             setTimeout(() => {
-                // Hide all pages
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                
-                // Show selected page
                 document.getElementById(pageId).classList.add('active');
 
-                // Update Title Bar
                 const titles = {
                     'home': 'Rithvik Ram - Portfolio',
-                    'blog': 'Blog',
-                    'services': 'Services',
-                    'projects': 'Projects',
+                    'about': 'About Me',
+                    'services': 'Services & Skills',
+                    'projects': 'Technical Projects',
                     'media': 'Media Production',
-                    'events': 'Events',
+                    'events': 'System Calendar',
                     'contact': 'Contact'
                 };
                 document.getElementById('window-title').innerText = titles[pageId] || 'Portfolio';
 
-                // Update Bottom Buttons
                 document.querySelectorAll('.nav-bottom .win95-btn').forEach(b => b.classList.remove('active'));
                 
-                // If btn is passed, activate it. If not (loaded from URL), find it.
                 if (btn) {
                     btn.classList.add('active');
                 } else {
@@ -237,7 +368,6 @@
                 
             }, 250); 
 
-            // 4. Remove transition class to "Turn On"
             setTimeout(() => {
                 contentArea.classList.remove('screen-transition');
             }, 500); 
@@ -248,24 +378,22 @@
             if (btn) btn.click();
         }
 
-        // === HANDLE PAGE LOAD & BACK BUTTON ===
         window.addEventListener('load', () => {
-            const hash = window.location.hash.substring(1); // remove #
+            const hash = window.location.hash.substring(1); 
             if (hash && document.getElementById(hash)) {
-                showPage(hash, null, false); // Don't push to history on initial load
+                showPage(hash, null, false); 
             }
         });
 
         window.addEventListener('popstate', (event) => {
             const hash = window.location.hash.substring(1);
             if (hash && document.getElementById(hash)) {
-                showPage(hash, null, false); // Don't push to history on back button
+                showPage(hash, null, false);
             } else {
                 showPage('home', null, false);
             }
         });
 
-        // Media Player Toggle
         function toggleMediaPlayer() {
             const player = document.getElementById('media-player');
             if (player.style.display === 'none') {
@@ -275,7 +403,6 @@
             }
         }
 
-        // Draggable Window Logic
         dragElement(document.getElementById("media-player"));
         function dragElement(elmnt) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
