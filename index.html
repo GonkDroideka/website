@@ -86,6 +86,14 @@
         .track-info { flex-grow: 1; }
         .track-play { font-size: 0.8rem; opacity: 0.7; }
 
+        /* Active shuffle style */
+        .win95-btn.active-state {
+            background: #dfdfdf;
+            border-color: #808080 #fff #fff #808080;
+            color: #008000; /* Green for active */
+            box-shadow: inset 1px 1px 2px #000;
+        }
+
     </style>
 </head>
 <body>
@@ -93,8 +101,8 @@
     <div class="scanlines"></div>
 
     <!-- Audio Element (Dynamic Source) -->
-    <audio id="bg-music" loop>
-        <source src="music/Big_Boi_KLICKAUD.mp3" type="audio/mpeg">
+    <audio id="bg-music">
+        <source src="" type="audio/mpeg">
     </audio>
 
     <div class="desktop">
@@ -114,12 +122,13 @@
             </div>
             <div class="content media-content">
                 <p><strong>Now Playing:</strong></p>
-                <p class="scrolling-text" id="player-track-name">Select a track from Media page...</p>
+                <p class="scrolling-text" id="player-track-name">Select a track...</p>
                 <div class="media-controls">
-                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').play()"><i class="fas fa-play"></i></button>
-                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').pause()"><i class="fas fa-pause"></i></button>
-                    <button class="win95-btn small-btn"><i class="fas fa-backward"></i></button>
-                    <button class="win95-btn small-btn"><i class="fas fa-forward"></i></button>
+                    <button class="win95-btn small-btn" id="shuffle-btn" onclick="toggleShuffle()" title="Shuffle"><i class="fas fa-random"></i></button>
+                    <button class="win95-btn small-btn" onclick="prevTrack()" title="Previous"><i class="fas fa-step-backward"></i></button>
+                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').play()" title="Play"><i class="fas fa-play"></i></button>
+                    <button class="win95-btn small-btn" onclick="document.getElementById('bg-music').pause()" title="Pause"><i class="fas fa-pause"></i></button>
+                    <button class="win95-btn small-btn" onclick="nextTrack()" title="Next"><i class="fas fa-step-forward"></i></button>
                 </div>
             </div>
         </div>
@@ -298,7 +307,7 @@
                         
                         <!-- Video 1 -->
                         <div class="video-container">
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/ySWZ54rNTOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/ySWZ54rNTOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             <div class="video-desc">
                                 <strong>Director's Note:</strong><br>
                                 This is the very first film I directed with a small skeleton crew. Well I hope you like disco, baby.
@@ -307,7 +316,7 @@
 
                         <!-- Video 2 -->
                         <div class="video-container">
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/VRMs1nPJ42U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/VRMs1nPJ42U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             <div class="video-desc">
                                 <strong>Kung-Fools</strong><br><br>
                                 A lone warrior. A deadly enemy. A showdown years in the making.<br><br>
@@ -412,6 +421,18 @@
     </div>
 
     <script>
+        // === TRACK DATA ===
+        const tracks = [
+            { file: 'Big_Boi_KLICKAUD.mp3', title: 'Big Boi' },
+            { file: 'Countess Bathory Cover.mp3', title: 'Countess Bathory (Cover)' },
+            { file: 'Draculas_titties.mp3', title: 'Eve of the Sabbath' },
+            { file: 'Jam3_trim.mp3', title: 'Central Cal Jam' },
+            { file: 'New_World_Order_Growl_FM_Phantom_Liberty_Cyberpunk_2077_KLICKAUD.mp3', title: 'New World Order' }
+        ];
+        
+        let currentTrackIndex = -1;
+        let isShuffle = false;
+
         // === NAVIGATION LOGIC ===
         function showPage(pageId, btn, pushToHistory = true) {
             const contentArea = document.getElementById('main-content-area');
@@ -484,23 +505,63 @@
         }
 
         // === MUSIC PLAYER LOGIC ===
-        function playTrack(filename, trackName) {
+        function loadAndPlay(filename, title) {
             const audio = document.getElementById('bg-music');
             const playerTitle = document.getElementById('player-track-name');
             const player = document.getElementById('media-player');
 
-            // 1. Update Source
             audio.src = 'music/' + filename;
-            
-            // 2. Play
             audio.play().catch(e => console.log("User interaction required first"));
-
-            // 3. Update Display
-            playerTitle.innerText = trackName + '...';
-
-            // 4. Open Player if closed
+            playerTitle.innerText = title;
             player.style.display = 'block';
         }
+
+        function playTrack(filename, trackName) {
+            // Find index of clicked track
+            const index = tracks.findIndex(t => t.file === filename);
+            if (index !== -1) currentTrackIndex = index;
+            
+            loadAndPlay(filename, trackName);
+        }
+
+        function nextTrack() {
+            if (tracks.length === 0) return;
+            
+            if (isShuffle) {
+                currentTrackIndex = Math.floor(Math.random() * tracks.length);
+            } else {
+                currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            }
+            
+            const track = tracks[currentTrackIndex];
+            loadAndPlay(track.file, track.title);
+        }
+
+        function prevTrack() {
+            if (tracks.length === 0) return;
+            
+            if (currentTrackIndex <= 0) {
+                 currentTrackIndex = tracks.length - 1;
+            } else {
+                currentTrackIndex--;
+            }
+
+            const track = tracks[currentTrackIndex];
+            loadAndPlay(track.file, track.title);
+        }
+
+        function toggleShuffle() {
+            isShuffle = !isShuffle;
+            const btn = document.getElementById('shuffle-btn');
+            if (isShuffle) {
+                btn.classList.add('active-state');
+            } else {
+                btn.classList.remove('active-state');
+            }
+        }
+
+        // Auto play next track when ended
+        document.getElementById('bg-music').addEventListener('ended', nextTrack);
 
         // Draggable Window Logic
         dragElement(document.getElementById("media-player"));
