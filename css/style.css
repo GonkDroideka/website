@@ -2,7 +2,7 @@
     --win-bg: #c0c0c0;
     --win-border-light: #ffffff;
     --win-border-dark: #808080;
-    --win-blue: #000080;
+    --win-blue: #000080; /* The classic blue you were looking for */
     --neon-pink: #ff00ff;
     --neon-cyan: #00ffff;
     --bg-color: #008080;
@@ -21,14 +21,31 @@ body {
     font-family: 'MS Sans Serif', Tahoma, sans-serif;
 }
 
-/* === CRITICAL: PAGE VISIBILITY LOGIC === */
+/* === CRITICAL: PAGE VISIBILITY & TYPOGRAPHY === */
 .page {
-    display: none; /* Hides all pages by default */
+    display: none; 
 }
 
 .page.active {
-    display: block; /* Only shows the page with 'active' class */
+    display: block; 
     animation: fadeIn 0.3s;
+}
+
+/* Restoring the Blue Headers */
+h2 {
+    color: var(--win-blue);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--win-blue);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    font-family: 'MS Sans Serif', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Links (non-button) should be blue */
+a:not(.win95-btn) {
+    color: var(--win-blue);
+    font-weight: bold;
 }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
