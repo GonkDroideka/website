@@ -2,7 +2,7 @@
     --win-bg: #c0c0c0;
     --win-border-light: #ffffff;
     --win-border-dark: #808080;
-    --win-blue: #000080; /* The classic blue you were looking for */
+    --win-blue: #000080;
     --neon-pink: #ff00ff;
     --neon-cyan: #00ffff;
     --bg-color: #008080;
@@ -31,7 +31,7 @@ body {
     animation: fadeIn 0.3s;
 }
 
-/* Restoring the Blue Headers */
+/* Headers */
 h2 {
     color: var(--win-blue);
     font-size: 1.5rem;
@@ -42,7 +42,6 @@ h2 {
     text-transform: uppercase;
 }
 
-/* Links (non-button) should be blue */
 a:not(.win95-btn) {
     color: var(--win-blue);
     font-weight: bold;
@@ -270,7 +269,7 @@ a:not(.win95-btn) {
 .event-details { font-size: 1rem; line-height: 1.2; }
 .insta-btn { margin-top: 10px; }
 
-/* Video & Media */
+/* Video & Media Styles */
 .video-container { margin-bottom: 25px; border: 2px solid #808080; padding: 5px; background: #c0c0c0; }
 .video-desc {
     margin-top: 10px; font-family: 'MS Sans Serif', sans-serif; font-size: 0.9rem;
@@ -289,6 +288,57 @@ a:not(.win95-btn) {
 .track-icon { margin-right: 10px; }
 .track-info { flex-grow: 1; }
 .track-play { font-size: 0.8rem; opacity: 0.7; }
+
+/* Podcast Station Styles */
+.podcast-interface {
+    background: #222;
+    border: 4px solid #555;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: #fff;
+    font-family: 'VT323', monospace;
+    position: relative;
+    box-shadow: inset 0 0 20px #000;
+}
+
+.frequency-display {
+    background: #000;
+    color: #ff00ff;
+    padding: 10px;
+    border: 2px inset #777;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+.freq-bar {
+    height: 12px;
+    flex-grow: 1;
+    margin-left: 20px;
+    background: repeating-linear-gradient(
+        90deg,
+        #330033,
+        #330033 2px,
+        #ff00ff 2px,
+        #ff00ff 4px
+    );
+    box-shadow: 0 0 5px #ff00ff;
+}
+
+.podcast-details { text-align: center; }
+.podcast-details h4 {
+    font-family: 'Press Start 2P', cursive;
+    color: #00ffff;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+.podcast-details p { font-size: 1.1rem; color: #ddd; margin-bottom: 15px; }
 
 /* Media Player Window */
 .media-content { height: auto; background: #000; color: #0f0; font-family: 'VT323', monospace; text-align: center; }
