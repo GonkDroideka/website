@@ -27,19 +27,33 @@
 
     <!-- BIOS BOOT SCREEN -->
     <div id="boot-screen">
-        <div class="boot-line">GONK_BIOS (C) 2026 GonkDroideka Systems Inc.</div>
-        <div class="boot-line">BIOS Date 02/10/26 10:44:00 Ver: 1.0.4</div>
-        <div class="boot-line">CPU: AMD Ryzen 5 3600 6-Core Processor</div>
-        <div class="boot-line">Speed: 3.60 GHz</div>
-        <div class="boot-line"> </div>
-        <div class="boot-line">Checking Memory...</div>
-        <div class="boot-line">16384KB OK</div>
-        <div class="boot-line"> </div>
-        <div class="boot-line">Detecting Primary Master ... Rithvik_Ram_Portfolio.EXE</div>
-        <div class="boot-line">Detecting Primary Slave  ... VIDEOS_STORE_DATA.DAT</div>
-        <div class="boot-line"> </div>
-        <div class="boot-line">Booting from Hard Disk...</div>
-        <div class="boot-line">Loading OS... <span class="cursor-blink"></span></div>
+        <!-- ASCII Art -->
+<pre class="ascii-art">
+██████╗ ██╗████████╗██╗  ██╗██╗   ██╗██╗██╗  ██╗
+██╔══██╗██║╚══██╔══╝██║  ██║██║   ██║██║██║ ██╔╝
+██████╔╝██║   ██║   ███████║██║   ██║██║█████╔╝ 
+██╔══██╗██║   ██║   ██╔══██║╚██╗ ██╔╝██║██╔═██╗ 
+██║  ██║██║   ██║   ██║  ██║ ╚████╔╝ ██║██║  ██╗
+╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝  ╚═╝
+</pre>
+        
+        <div id="boot-log">
+            <div class="boot-line">GONK_BIOS (C) 2026 GonkDroideka Systems Inc.</div>
+            <div class="boot-line">BIOS Date 02/10/26 10:44:00 Ver: 1.0.4</div>
+            <div class="boot-line">CPU: AMD Ryzen 5 3600 6-Core Processor</div>
+            <div class="boot-line">Speed: 3.60 GHz</div>
+            <div class="boot-line"> </div>
+            <div class="boot-line">Checking Memory...</div>
+            <div class="boot-line">16384KB OK</div>
+            <div class="boot-line"> </div>
+            <div class="boot-line">Detecting Primary Master ... Rithvik_Ram_Portfolio.EXE</div>
+            <div class="boot-line">Detecting Primary Slave  ... VIDEOS_STORE_DATA.DAT</div>
+            <div class="boot-line"> </div>
+            <div class="boot-line">Booting from Hard Disk...</div>
+            <div class="boot-line">Loading OS... <span class="cursor-blink"></span></div>
+        </div>
+
+        <div id="press-start">PRESS ANY KEY TO START...</div>
     </div>
 
     <!-- Audio Element (Hidden) -->
@@ -48,7 +62,7 @@
     </audio>
 
     <div class="desktop">
-        
+        <!-- ... (Rest of your desktop HTML remains unchanged) ... -->
         <!-- Top Right Media Launcher (Fixed Position) -->
         <button class="win95-btn music-launcher" onclick="toggleMediaPlayer()">
             ♫ Media Player
@@ -222,21 +236,23 @@
 
     <script>
         // === BOOT SEQUENCE LOGIC ===
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check if boot has already been shown in this session (optional, remove check to show every time)
-            if (!sessionStorage.getItem('bootShown')) {
-                runBootSequence();
-                sessionStorage.setItem('bootShown', 'true');
-            } else {
-                // If skipping boot, ensure screen is hidden immediately
-                document.getElementById('boot-screen').style.display = 'none';
-            }
-        });
+        // Wait for user interaction to start boot
+        const bootScreen = document.getElementById('boot-screen');
+        const pressStart = document.getElementById('press-start');
+        const bootLog = document.getElementById('boot-log');
+        let bootStarted = false;
 
-        function runBootSequence() {
-            const bootScreen = document.getElementById('boot-screen');
-            const lines = document.querySelectorAll('.boot-line');
+        // Hide log initially
+        const logLines = document.querySelectorAll('.boot-line');
+        logLines.forEach(line => line.classList.remove('visible')); // Ensure hidden by default
+
+        function startBoot() {
+            if (bootStarted) return;
+            bootStarted = true;
+            pressStart.style.display = 'none'; // Hide prompt
+
             let delay = 0;
+            const lines = document.querySelectorAll('.boot-line');
 
             lines.forEach((line, index) => {
                 // Randomize delay slightly for realism
@@ -254,7 +270,13 @@
             }, delay + 1500); // Wait 1.5s after last line
         }
 
+        // Listen for any key or click
+        document.addEventListener('keydown', startBoot);
+        document.addEventListener('click', startBoot);
+        document.addEventListener('touchstart', startBoot);
+
         // === UPDATED NAVIGATION LOGIC ===
+        // ... (rest of your existing JS)
         
         function showPage(pageId, btn, pushToHistory = true) {
             const contentArea = document.getElementById('main-content-area');

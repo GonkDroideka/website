@@ -371,6 +371,25 @@ a:not(.win95-btn) {
     overflow: hidden;
 }
 
+.ascii-art {
+    color: #00ff00;
+    font-family: monospace;
+    white-space: pre;
+    font-size: 10px; /* Adjust based on art size */
+    line-height: 10px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 5px #00ff00;
+    opacity: 0.8;
+}
+
+/* Responsive adjustment for ASCII art on mobile */
+@media (max-width: 600px) {
+    .ascii-art {
+        font-size: 6px;
+        line-height: 6px;
+    }
+}
+
 .boot-line {
     opacity: 0; /* Hidden initially */
     margin-bottom: 5px;
@@ -391,6 +410,14 @@ a:not(.win95-btn) {
     vertical-align: bottom;
 }
 
+#press-start {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    animation: blink 1s step-end infinite;
+    cursor: pointer;
+}
+
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -407,4 +434,6 @@ a:not(.win95-btn) {
         opacity: 0;
         visibility: hidden;
     }
+}
+	
 }
