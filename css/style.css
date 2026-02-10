@@ -350,3 +350,61 @@ a:not(.win95-btn) {
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
     background-size: 100% 4px; z-index: 9999; pointer-events: none; opacity: 0.3;
 }
+
+/* === BIOS BOOT SPLASH SCREEN === */
+#boot-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    color: #00ff00; /* Classic green phosphor terminal */
+    font-family: 'VT323', monospace;
+    z-index: 99999; /* Must be on top of everything */
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 1.2rem;
+    overflow: hidden;
+}
+
+.boot-line {
+    opacity: 0; /* Hidden initially */
+    margin-bottom: 5px;
+}
+
+/* Animation to show lines one by one */
+.boot-line.visible {
+    opacity: 1;
+}
+
+/* The blinker at the end */
+.cursor-blink {
+    display: inline-block;
+    width: 10px;
+    height: 1.2rem;
+    background-color: #00ff00;
+    animation: blink 1s step-end infinite;
+    vertical-align: bottom;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Fade out animation for the whole screen */
+.fade-out {
+    animation: fadeOutScreen 1s forwards;
+    pointer-events: none; /* Let clicks pass through as it fades */
+}
+
+@keyframes fadeOutScreen {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
