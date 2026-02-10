@@ -62,7 +62,7 @@
     </audio>
 
     <div class="desktop">
-        <!-- ... (Rest of your desktop HTML remains unchanged) ... -->
+        
         <!-- Top Right Media Launcher (Fixed Position) -->
         <button class="win95-btn music-launcher" onclick="toggleMediaPlayer()">
             ♫ Media Player
@@ -103,7 +103,8 @@
                     <div class="hero-section animate-up">
                         <!-- New Retro Font Header -->
                         <h1 class="glitch-header" data-text="Rithvik Ram">Rithvik Ram</h1>
-                        <p class="subtitle">IT Infrastructure | Web Design | Media Production</p>
+                        <p class="subtitle">Computer Guy | Cloud Infrastructure | Music Meister</p>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Reno, NV | <i class="fas fa-envelope"></i> rithvik2001@gmail.com</p>
                         <hr class="win-divider">
                     </div>
 
@@ -111,111 +112,228 @@
                         <!-- Tech Card -->
                         <div class="skill-card" onclick="triggerNav('projects')">
                             <div class="card-icon">💻</div>
-                            <h3>Systems & Code</h3>
-                            <p>Web Design, CS Fundamentals, & IT Infrastructure.</p>
+                            <h3>Systems & Projects</h3>
+                            <p>Active Directory, Windows Server, Virtualization, and Cloud Labs.</p>
                             <span class="link-text">View Projects →</span>
                         </div>
 
                         <!-- Creative Card -->
                         <div class="skill-card" onclick="triggerNav('media')">
                             <div class="card-icon">🎬</div>
-                            <h3>Media Production</h3>
-                            <p>I make movies and play some music. Check it out.</p>
+                            <h3>Media</h3>
+                            <p>Hey I did a thing.</p>
                             <span class="link-text">View Media →</span>
                         </div>
 
-                        <!-- Tutoring Card -->
+                        <!-- Services Card -->
                         <div class="skill-card" onclick="triggerNav('services')">
                             <div class="card-icon">🎓</div>
-                            <h3>Tutoring</h3>
-                            <p>Mentorship in Guitar, Bass Guitar, and Coding/Logic.</p>
+                            <h3>Services & Skills</h3>
+                            <p>IT Administration, Web Design, Music Tutoring.</p>
                             <span class="link-text">View Services →</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- PAGE: BLOG -->
-                <div id="blog" class="page">
+                <!-- PAGE: ABOUT -->
+                <div id="about" class="page">
                     <h2>About Me</h2>
-                    <p>Blog. I am blogging</p>
-                    <p>Blog Blog.</p>
+                    <div class="win-panel">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <div class="date-loc">California Polytechnic State University | San Luis Obispo, CA</div>
+                        <ul class="skill-list"><li><strong>Relevant Coursework:</strong> Systems Architecture, Logic Design, Network Protocols, Operating Systems.</li></ul>
+                    </div>
+                    <div class="win-panel">
+                        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                        <ul class="skill-list"><li><strong>CompTIA A+</strong></li><li><strong>Microsoft Certified:</strong> Azure Fundamentals AZ-900</li></ul>
+                    </div>
+                    <div class="win-panel">
+                        <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
+                        <h4>Stage Technician (A/V Support)</h4>
+                        <div class="date-loc">Performing Arts Center | San Luis Obispo, CA | Apr 2024 - Sept 2024</div>
+                        <ul class="skill-list">
+                            <li><strong>Critical Troubleshooting:</strong> Diagnosed audio signal flow issues and hardware malfunctions during live productions, ensuring 100% system uptime.</li>
+                            <li><strong>System Configuration:</strong> Set up and configured audio mixing consoles, lighting rigs, and power distribution systems based on technical schematics.</li>
+                            <li><strong>Collaboration:</strong> Coordinated with engineering teams to execute complex technical cues under strict time constraints.</li>
+                        </ul>
+                        <hr class="win-divider" style="margin: 15px 0;">
+                        <h4>Behavior Technician</h4>
+                        <div class="date-loc">Proud Moments ABA | Henderson, NV | Nov 2024 - Present</div>
+                        <ul class="skill-list">
+                            <li><strong>Documentation:</strong> Maintained strict HIPAA-compliant records of client interactions, mirroring IT asset tracking and ticket documentation standards.</li>
+                            <li><strong>Analysis:</strong> Analyzed data trends to adjust operational procedures in real-time.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- PAGE: SERVICES -->
                 <div id="services" class="page">
-                    <h2>Services Offered</h2>
-                    <ul>
-                        <li><strong>Web Development:</strong> Can design websites to meet clients needs .</li>
-                        <li><strong>Technical Tutoring:</strong> Mentorship in Computer Science logic and coding basics.</li>
-                        <li><strong>Music Instruction:</strong> Private lessons for Guitar and Bass.</li>
-                    </ul>
+                    <h2>Services & Technical Skills</h2>
+                    <div class="win-panel">
+                        <h3><i class="fas fa-network-wired"></i> IT Administration & Networking</h3>
+                        <p>Comprehensive management of enterprise environments.</p>
+                        <ul class="skill-list">
+                            <li><strong>Active Directory (AD DS):</strong> User account management, OUs, and security groups.</li>
+                            <li><strong>Group Policy (GPO):</strong> Enforcing security settings and mapping network drives.</li>
+                            <li><strong>Networking:</strong> TCP/IP, Static IP Addressing, Port Forwarding, Firewall Configuration, Remote Access (RDP/VPN).</li>
+                            <li><strong>Infrastructure:</strong> DNS, DHCP, Windows Server 2019/2022.</li>
+                        </ul>
+                    </div>
+                    <div class="win-panel">
+                        <h3><i class="fas fa-terminal"></i> Scripting & Automation</h3>
+                        <p>Reducing manual overhead through code.</p>
+                        <ul class="skill-list">
+                            <li><strong>PowerShell:</strong> Automating administrative tasks and VM lifecycle management.</li>
+                            <li><strong>Batch Scripting & Task Scheduler:</strong> Routine system maintenance automation.</li>
+                        </ul>
+                    </div>
+                    <div class="win-panel">
+                        <h3><i class="fas fa-code"></i> Web & Design</h3>
+                        <ul class="skill-list">
+                            <li><strong>Development:</strong> HTML/CSS, C#/.NET Framework.</li>
+                            <li><strong>Design:</strong> UI/UX Prototyping in Figma.</li>
+                        </ul>
+                    </div>
+                    <div class="win-panel">
+                        <h3><i class="fas fa-chalkboard-teacher"></i> Tutoring & Instruction</h3>
+                        <ul class="skill-list">
+                            <li><strong>Technical:</strong> Cybersecurity fundamentals (Phishing, 2FA, Password Security).</li>
+                            <li><strong>Music:</strong> Private instruction for Guitar and Bass composition.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- PAGE: PROJECTS -->
                 <div id="projects" class="page">
-                    <h2>Recent Projects</h2>
-                    <div class="project-item">
-                        <h3>Azure Static Resume</h3>
-                        <p>Beans Beans Beans. A CI/CD deployed portfolio using GitHub Actions.</p>
+                    <h2>Technical Projects</h2>
+                    <div class="win-panel">
+                        <h3>Windows Server Enterprise Lab</h3>
+                        <div class="date-loc">System Administration & Virtualization</div>
+                        <ul class="project-list">
+                            <li>Built a virtualized enterprise network using Hyper-V hosting Windows Server 2019 and Windows 10 clients.</li>
+                            <li>Configured Active Directory Domain Services (AD DS) to manage user accounts, OUs, and security groups.</li>
+                            <li>Deployed DHCP scopes and DNS records to ensure proper network connectivity and name resolution.</li>
+                            <li>Implemented Group Policy Objects (GPOs) to enforce security settings and map network drives across the domain.</li>
+                        </ul>
                     </div>
-                    <div class="project-item">
-                        <h3>PowerShell Automation</h3>
-                        <p>Scripts developed to automate Active Directory user management.</p>
+                    <div class="win-panel">
+                        <h3>IT Automation Scripting</h3>
+                        <div class="date-loc">PowerShell & Task Management</div>
+                        <ul class="project-list">
+                            <li>Developed PowerShell scripts to automate routine administrative tasks, including VM lifecycle management (Start/Stop/Snapshot).</li>
+                            <li>Created automated health-check scripts to monitor system uptime and log performance metrics.</li>
+                            <li>Reduced manual configuration time for lab environments by approximately 40% through script execution.</li>
+                        </ul>
                     </div>
-                    <div class="project-item">
-                        <h3>Homelab Environment</h3>
-                        <p>Running a Windows Server / AD environment for testing security policies.</p>
+                    <div class="win-panel">
+                        <h3>Non-Profit Web Solution</h3>
+                        <div class="date-loc">Web Development & UI/UX</div>
+                        <ul class="project-list">
+                            <li>Designed and deployed a responsive website for the Pearls of Africa Children's Fund, translating client requirements into technical specifications.</li>
+                            <li>Utilized Figma for high-fidelity prototyping to ensure UI/UX accessibility compliance before coding.</li>
+                        </ul>
+                    </div>
+                    <div class="win-panel">
+                        <h3>Interactive Narrative Engine (Senior Thesis)</h3>
+                        <div class="date-loc">C# Development & SDLC</div>
+                        <ul class="project-list">
+                            <li>Engineered a C# event-driven architecture to handle complex state management and JSON data persistence.</li>
+                            <li>Managed the full Software Development Life Cycle (SDLC) over a 10-week sprint, including debugging, refactoring, and version control via Git.</li>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- PAGE: MEDIA -->
                 <div id="media" class="page">
                     <h2>Media Production</h2>
-                    <div class="media-section">
-                        <h3>Film & Video</h3>
-                        <p>I make stuff (will populate page later).</p>
+                    <div class="win-panel">
+                        <h3><i class="fas fa-video"></i> Film & Video</h3>
+                        <div class="video-container">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/ySWZ54rNTOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <div class="video-desc"><strong>Director's Note:</strong><br>This is the very first film I directed with a small skeleton crew. Well I hope you like disco, baby.</div>
+                        </div>
+                        <div class="video-container">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/VRMs1nPJ42U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <div class="video-desc"><strong>Kung-Fools</strong><br><br>A lone warrior. A deadly enemy. A showdown years in the making...</div>
+                        </div>
                     </div>
-                    <hr class="win-divider">
-                    <div class="media-section">
-                        <h3>Music (Guitar & Bass)</h3>
-                        <p>EEEEEEEEEEEEEEEEEEE.</p>
-                        <p><em>Check the Media Player in the top right for a boss ass track.</em></p>
+
+                    <!-- PODCAST SECTION -->
+                    <div class="win-panel">
+                        <h3><i class="fas fa-microphone-lines"></i> Podcast</h3>
+                        <div class="podcast-interface">
+                            <div class="frequency-display">
+                                <span class="freq-label">FREQ:</span>
+                                <span class="freq-value">94.85 MHz</span>
+                                <div class="freq-bar"></div>
+                            </div>
+                            <div class="podcast-details">
+                                <h4>Monday Morning Directing</h4>
+                                <p>Weekly transmission regarding cinema, direction, and creative chaos.</p>
+                                <a href="https://www.youtube.com/@mondaymorningdirecting9485/videos" target="_blank" class="win95-btn large-btn" style="margin-top: 10px;">
+                                    <i class="fab fa-youtube"></i> Tune In
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win-panel">
+                        <h3><i class="fas fa-guitar"></i> Music Composition</h3>
+                        <p style="margin-bottom:15px;">A collection of tracks and covers. Click any track to load it into the system Media Player.</p>
+                        <div class="playlist-container">
+                            <div class="track-item" onclick="playTrack('Big_Boi_KLICKAUD.mp3', 'Big Boi')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span><span class="track-info">Big Boi</span><span class="track-play">[LOAD]</span>
+                            </div>
+                            <div class="track-item" onclick="playTrack('Countess Bathory Cover.mp3', 'Countess Bathory (Cover)')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span><span class="track-info">Countess Bathory (Cover)</span><span class="track-play">[LOAD]</span>
+                            </div>
+                            <div class="track-item" onclick="playTrack('Draculas_titties.mp3', 'Eve of the Sabbath')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span><span class="track-info">Eve of the Sabbath</span><span class="track-play">[LOAD]</span>
+                            </div>
+                            <div class="track-item" onclick="playTrack('Jam3_trim.mp3', 'Central Cal Jam')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span><span class="track-info">Central Cal Jam</span><span class="track-play">[LOAD]</span>
+                            </div>
+                            <div class="track-item" onclick="playTrack('New_World_Order_Growl_FM_Phantom_Liberty_Cyberpunk_2077_KLICKAUD.mp3', 'New World Order')">
+                                <span class="track-icon"><i class="fas fa-play-circle"></i></span><span class="track-info">New World Order (Cyberpunk 2077)</span><span class="track-play">[LOAD]</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- PAGE: EVENTS -->
+                <!-- EVENTS -->
                 <div id="events" class="page">
-                    <h2>Calendar</h2>
-                    <p><strong>Upcoming:</strong> Band going on tour.</p>
-                    <p><strong>Location:</strong> Reno, NV.</p>
+                    <div class="events-wrapper">
+                        <div class="events-bg"></div>
+                        <div class="events-content-layer">
+                            <div class="band-header">
+                                <h1 class="band-title">VIDEOSTORE</h1>
+                                <a href="https://www.instagram.com/videostoreband?igsh=MTJrc21lNGd3OHQ2cg==" target="_blank" class="win95-btn insta-btn"><i class="fab fa-instagram"></i> @videostoreband</a>
+                            </div>
+                            <div class="tour-hero">
+                                <div class="hero-img-container"><img src="images/science_fiction_tour.jpg" alt="Science Fiction Tour" class="hero-poster"><div class="caption">DEATH OF FREAKS & GEEKS TOUR</div></div>
+                                <div class="hero-img-container"><img src="images/videostore-COLLAGE.jpg" alt="Videostore Band" class="hero-poster"><div class="caption">THE BAND</div></div>
+                            </div>
+                            <div class="events-section">
+                                <h2 class="neon-header">UPCOMING EVENTS</h2>
+                                <div id="upcoming-list" class="event-grid"></div>
+                            </div>
+                            <div class="events-section">
+                                <h2 class="neon-header dimmed">PAST EVENTS</h2>
+                                <div id="past-list" class="event-grid"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- PAGE: CONTACT (UPDATED) -->
+                <!-- CONTACT -->
                 <div id="contact" class="page">
                     <h2>Contact Me</h2>
-                    
                     <div class="contact-container" style="text-align: center; margin-top: 30px;">
                         <p>Open communication channels:</p>
-                        
                         <div class="contact-grid">
-                            <!-- Email Button -->
-                            <a href="mailto:rithvik2001@gmail.com" class="win95-btn large-btn">
-                                <span class="contact-icon">📧</span>
-                                <div class="btn-text">
-                                    <strong>Email Me</strong><br>
-                                    <small>rithvik2001@gmail.com</small>
-                                </div>
-                            </a>
-
-                            <!-- GitHub Button -->
-                            <a href="https://github.com/GonkDroideka" target="_blank" class="win95-btn large-btn">
-                                <!-- GitHub Icon -->
-                                <img src="https://img.icons8.com/dusk/64/000000/github.png" alt="GitHub" class="contact-img">
-                                <div class="btn-text">
-                                    <strong>GitHub</strong><br>
-                                    <small>@GonkDroideka</small>
-                                </div>
-                            </a>
+                            <a href="mailto:rithvik2001@gmail.com" class="win95-btn large-btn"><span class="contact-icon"><i class="fas fa-envelope"></i></span><div class="btn-text"><strong>Email Me</strong><br><small>rithvik2001@gmail.com</small></div></a>
+                            <a href="https://github.com/GonkDroideka" target="_blank" class="win95-btn large-btn"><span class="contact-icon"><i class="fab fa-github"></i></span><div class="btn-text"><strong>GitHub</strong><br><small>@GonkDroideka</small></div></a>
                         </div>
                     </div>
                 </div>
@@ -225,7 +343,7 @@
         <!-- Bottom Taskbar Navigation (Fixed) -->
         <div class="nav-bottom">
             <button class="win95-btn active" data-target="home" onclick="showPage('home', this)">Home</button>
-            <button class="win95-btn" data-target="about" onclick="showPage('blog', this)">Blog</button>
+            <button class="win95-btn" data-target="about" onclick="showPage('about', this)">About</button>
             <button class="win95-btn" data-target="services" onclick="showPage('services', this)">Services</button>
             <button class="win95-btn" data-target="projects" onclick="showPage('projects', this)">Projects</button>
             <button class="win95-btn" data-target="media" onclick="showPage('media', this)">Media</button>
@@ -276,7 +394,6 @@
         document.addEventListener('touchstart', startBoot);
 
         // === UPDATED NAVIGATION LOGIC ===
-        // ... (rest of your existing JS)
         
         function showPage(pageId, btn, pushToHistory = true) {
             const contentArea = document.getElementById('main-content-area');
@@ -320,6 +437,9 @@
                     if(navBtn) navBtn.classList.add('active');
                 }
                 
+                // Render events if that page is opened
+                if (pageId === 'events') renderEvents();
+
             }, 250); 
 
             // 4. Remove transition class to "Turn On"
@@ -338,6 +458,8 @@
             const hash = window.location.hash.substring(1); // remove #
             if (hash && document.getElementById(hash)) {
                 showPage(hash, null, false); // Don't push to history on initial load
+            } else {
+                renderEvents(); // Default load events too
             }
         });
 
@@ -392,6 +514,52 @@
                 document.onmousemove = null;
             }
         }
+
+        // === MUSIC PLAYER LOGIC ===
+        // Track & Event Data
+        const tracks = [
+            { file: 'Big_Boi_KLICKAUD.mp3', title: 'Big Boi' },
+            { file: 'Countess Bathory Cover.mp3', title: 'Countess Bathory (Cover)' },
+            { file: 'Draculas_titties.mp3', title: 'Eve of the Sabbath' },
+            { file: 'Jam3_trim.mp3', title: 'Central Cal Jam' },
+            { file: 'New_World_Order_Growl_FM_Phantom_Liberty_Cyberpunk_2077_KLICKAUD.mp3', title: 'New World Order' }
+        ];
+        
+        const bandEvents = [
+            { date: '2026-02-01', displayDate: 'Feb 1, 2026', venue: 'The Holland Project', location: 'Reno, NV', flyer: 'images/holland.jpg', details: 'w/ Jo Passed, Rotten Heights. $10 Adv / $12 Door. 7PM.', link: 'https://hollandreno.org' },
+            { date: '2026-02-06', displayDate: 'Feb 6, 2026', venue: '7825 Lichen Drive', location: 'Citrus Heights, CA', flyer: 'images/sac_flyer_2.jpg', details: 'Frontseat58 Feature. $15 Door. 6:30PM.', link: '#' }
+        ];
+
+        let currentTrackIndex = -1;
+        let isShuffle = false;
+
+        function renderEvents() {
+            const upcomingContainer = document.getElementById('upcoming-list');
+            const pastContainer = document.getElementById('past-list');
+            const today = new Date(); today.setHours(0,0,0,0);
+            upcomingContainer.innerHTML = ''; pastContainer.innerHTML = '';
+
+            bandEvents.forEach(evt => {
+                const [y, m, d] = evt.date.split('-').map(Number);
+                const eventDate = new Date(y, m - 1, d);
+                const cardHTML = `<div class="event-card"><div class="polaroid-frame"><img src="${evt.flyer}" alt="Show Flyer"></div><div class="event-info"><div class="event-date">${evt.displayDate}</div><div class="event-venue">${evt.venue}</div><div class="event-loc">${evt.location}</div><div class="event-details">${evt.details}</div></div></div>`;
+                if (eventDate < today) pastContainer.innerHTML += cardHTML;
+                else upcomingContainer.innerHTML += cardHTML;
+            });
+            if (upcomingContainer.innerHTML === '') upcomingContainer.innerHTML = '<p class="no-events">No upcoming transmissions detected.</p>';
+            if (pastContainer.innerHTML === '') pastContainer.innerHTML = '<p class="no-events">Archives empty.</p>';
+        }
+
+        function loadAndPlay(f, t) {
+            const a = document.getElementById('bg-music'); a.src = 'music/' + f;
+            a.play().catch(e=>console.log(e)); document.getElementById('player-track-name').innerText = t; document.getElementById('media-player').style.display = 'block';
+        }
+        function playTrack(f, t) { const i = tracks.findIndex(x => x.file === f); if (i!==-1) currentTrackIndex = i; loadAndPlay(f, t); }
+        function nextTrack() { if(!tracks.length)return; currentTrackIndex = isShuffle ? Math.floor(Math.random()*tracks.length) : (currentTrackIndex+1)%tracks.length; loadAndPlay(tracks[currentTrackIndex].file, tracks[currentTrackIndex].title); }
+        function prevTrack() { if(!tracks.length)return; currentTrackIndex = (currentTrackIndex<=0) ? tracks.length-1 : currentTrackIndex-1; loadAndPlay(tracks[currentTrackIndex].file, tracks[currentTrackIndex].title); }
+        function toggleShuffle() { isShuffle = !isShuffle; const b = document.getElementById('shuffle-btn'); isShuffle ? b.classList.add('active-state') : b.classList.remove('active-state'); }
+        document.getElementById('bg-music').addEventListener('ended', nextTrack);
+
     </script>
 </body>
 </html>
