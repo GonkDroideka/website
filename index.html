@@ -356,6 +356,11 @@
 
         // Handle Master Click Logic
         function handleInteraction(e) {
+            // Prevent mobile double-firing (touchstart + click happening simultaneously)
+            const now = Date.now();
+            if (now - lastInteractionTime < 300) return;
+            lastInteractionTime = now;
+
             if (bootState === 'site_loaded') return; 
 
             if (bootState === 'waiting') {
@@ -449,9 +454,12 @@
 
             // Elements are naturally processed in top-to-bottom DOM order
             dialUpElements.forEach((el) => {
-                let step = Math.random() * 200 + 20; // Fast dial-up chunk speed
+                let step = Math.random() * 275 + 20; // Fast dial-up chunk speed
                 // Make larger blocks take slightly longer
                 if (el.classList.contains('main-window') || el.classList.contains('win-panel')) step += 100;
+				
+				// Make the skill cards load significantly slower (simulating heavy images/buttons)
+                if (el.classList.contains('skill-card')) step += 600; 
                 
                 delay += step;
                 const timeoutId = setTimeout(() => {
