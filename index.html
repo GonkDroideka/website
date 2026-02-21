@@ -361,7 +361,13 @@
             if (now - lastInteractionTime < 300) return;
             lastInteractionTime = now;
 
-            if (bootState === 'site_loaded') return; 
+            console.log("Interaction registered! Current State: " + bootState);
+
+            if (bootState === 'site_loaded') {
+                // If the site is fully loaded, re-enable the body pointer events to normal
+                document.body.style.cursor = 'default';
+                return; 
+            }
 
             if (bootState === 'waiting') {
                 startBoot();
