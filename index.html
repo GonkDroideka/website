@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> <!-- yes please -->
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rithvik Ram // Portfolio</title>
@@ -384,7 +384,7 @@
             bootSound.currentTime = 0;
             bootSound.play().catch(e => console.log("Audio play prevented - requires user gesture"));
             
-            let delay = 1000;
+            let delay = 0;
             
             logLines.forEach((line) => {
                 delay += Math.random() * 300 + 50; // Typewriter typing speed
@@ -416,8 +416,8 @@
 
         function prepareSiteLoad() {
             // Dynamically grab all core UI elements and active page components
-            // This prevents you from having to manually add CSS classes to your HTML
-            const selector = '.music-launcher, .main-window, .title-bar, .page.active > *, .page.active .skill-card, .page.active .win-panel, .page.active .video-container, .page.active .track-item, .page.active .event-card, .nav-bottom';
+            // Added .nav-bottom .win95-btn so the taskbar buttons pop in separately
+            const selector = '.music-launcher, .main-window, .title-bar, .page.active > *, .page.active .skill-card, .page.active .win-panel, .page.active .video-container, .page.active .track-item, .page.active .event-card, .nav-bottom, .nav-bottom .win95-btn';
             dialUpElements = document.querySelectorAll(selector);
             
             dialUpElements.forEach(el => {
@@ -437,7 +437,7 @@
             fadeTimeout = setTimeout(() => { 
                 bootScreen.style.display = 'none';
                 startSiteLoad();
-            }, 1000); 
+            }, 1400); 
         }
 
         // ============================
@@ -449,7 +449,7 @@
 
             // Elements are naturally processed in top-to-bottom DOM order
             dialUpElements.forEach((el) => {
-                let step = Math.random() * 400 + 20; // Fast dial-up chunk speed
+                let step = Math.random() * 200 + 20; // Fast dial-up chunk speed
                 // Make larger blocks take slightly longer
                 if (el.classList.contains('main-window') || el.classList.contains('win-panel')) step += 100;
                 
