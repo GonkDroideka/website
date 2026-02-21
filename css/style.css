@@ -26,12 +26,21 @@ body {
     display: none; 
 }
 
+/* Removed modern fade-in animation to keep it blocky and retro */
 .page.active {
     display: block; 
-    animation: fadeIn 0.3s;
 }
 
-/* Headers */
+/* === NEW: DIAL-UP LOADING CLASSES === */
+.dial-up-hidden {
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+.dial-up-element {
+    /* No transition makes it "pop" in abruptly, matching 90s loading */
+}
+
 h2 {
     color: var(--win-blue);
     font-size: 1.5rem;
@@ -46,8 +55,6 @@ a:not(.win95-btn) {
     color: var(--win-blue);
     font-weight: bold;
 }
-
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Windows 95 Button Style */
 .win95-btn {
