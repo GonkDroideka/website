@@ -50,7 +50,7 @@
             <div class="boot-line">Loading GUI components........ OK</div>
             <div class="boot-line">Mounting media drives......... OK</div>
             <div class="boot-line">Initializing audio engine..... OK</div>
-            <div class="boot-line">Establishing network.......... OK</div>
+            <div class="boot-line">Establishing network.......... 56K Dial-Up Connected</div>
             <div class="boot-line">Loading OS... <span class="cursor-blink"></span></div>
         </div>
 
@@ -58,14 +58,16 @@
     </div>
 
     <!-- Audio Elements -->
-    <audio id="boot-sound"><source src="music/boot.mp3" type="audio/mpeg"></audio>
     <audio id="bg-music"><source src="" type="audio/mpeg"></audio>
 
     <div class="desktop">
-        <!-- Added dial-up classes to hide initially -->
-        <button class="win95-btn music-launcher dial-up-element dial-up-hidden" onclick="toggleMediaPlayer()"><i class="fas fa-music"></i> Media Player</button>
+        
+        <!-- Elements with dial-up-element & dial-up-hidden load in sequentially -->
+        <button class="win95-btn music-launcher dial-up-element dial-up-hidden" onclick="toggleMediaPlayer()">
+            <i class="fas fa-music"></i> Media Player
+        </button>
 
-        <!-- Media Player -->
+        <!-- Draggable Media Player Window -->
         <div id="media-player" class="window draggable-window" style="display: none; top: 20%; left: 70%;">
             <div class="title-bar" id="media-player-header">
                 <div class="title"><i class="fas fa-compact-disc"></i> Winamp</div>
@@ -85,23 +87,23 @@
         </div>
 
         <!-- Main Window -->
-        <div class="window main-window">
-            <div class="title-bar dial-up-element dial-up-hidden">
+        <div class="window main-window dial-up-element dial-up-hidden">
+            <div class="title-bar">
                 <div class="title" id="window-title">Rithvik Ram - Portfolio</div>
                 <div class="controls"><span>_</span><span>□</span><span>×</span></div>
             </div>
-
+            
             <div class="content" id="main-content-area">
-
+                
                 <!-- HOME -->
                 <div id="home" class="page active">
                     <div class="hero-section">
-                        <!-- Individual text blocks get dial-up classes -->
                         <h1 class="glitch-header dial-up-element dial-up-hidden" data-text="Rithvik Ram">Rithvik Ram</h1>
-                        <p class="subtitle dial-up-element dial-up-hidden">Computer Guy | Cloud Infrastructure | Music Meister</p>
+                        <p class="subtitle dial-up-element dial-up-hidden">System Administrator | Cloud Infrastructure | A/V Technician</p>
                         <p class="dial-up-element dial-up-hidden" style="font-size: 0.9rem; margin-top: 5px;">Reno, NV | <i class="fas fa-envelope"></i> rithvik2001@gmail.com</p>
                         <hr class="win-divider dial-up-element dial-up-hidden">
                     </div>
+
                     <div class="skill-grid">
                         <div class="skill-card dial-up-element dial-up-hidden" onclick="triggerNav('projects')">
                             <div class="card-icon"><i class="fas fa-server"></i></div>
@@ -111,14 +113,14 @@
                         </div>
                         <div class="skill-card dial-up-element dial-up-hidden" onclick="triggerNav('media')">
                             <div class="card-icon"><i class="fas fa-film"></i></div>
-                            <h3>Media</h3>
-                            <p>Hey I did a thing.</p>
+                            <h3>Media & A/V</h3>
+                            <p>Live Production Support, Audio Mixing, and Creative Content.</p>
                             <span class="link-text">View Media <i class="fas fa-arrow-right"></i></span>
                         </div>
                         <div class="skill-card dial-up-element dial-up-hidden" onclick="triggerNav('services')">
                             <div class="card-icon"><i class="fas fa-toolbox"></i></div>
                             <h3>Services & Skills</h3>
-                            <p>IT Administration, Web Design, Music Tutoring.</p>
+                            <p>IT Administration, Automation Scripting, and Technical Tutoring.</p>
                             <span class="link-text">View Services <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </div>
@@ -199,19 +201,10 @@
                         </ul>
                     </div>
                     <div class="win-panel">
-                        <h3>Non-Profit Web Solution</h3>
-                        <div class="date-loc">Web Development & UI/UX</div>
-                        <ul class="project-list">
-                            <li>Designed and deployed a responsive website for the Pearls of Africa Children's Fund, translating client requirements into technical specifications.</li>
-                            <li>Utilized Figma for high-fidelity prototyping to ensure UI/UX accessibility compliance before coding.</li>
-                        </ul>
-                    </div>
-                    <div class="win-panel">
                         <h3>Interactive Narrative Engine (Senior Thesis)</h3>
                         <div class="date-loc">C# Development & SDLC</div>
                         <ul class="project-list">
                             <li>Engineered a C# event-driven architecture to handle complex state management and JSON data persistence.</li>
-                            <li>Managed the full Software Development Life Cycle (SDLC) over a 10-week sprint, including debugging, refactoring, and version control via Git.</li>
                         </ul>
                     </div>
                 </div>
@@ -313,8 +306,8 @@
             </div>
         </div>
 
-        <!-- Taskbar -->
-        <div class="nav-bottom">
+        <!-- Taskbar Elements load sequentially -->
+        <div class="nav-bottom dial-up-element dial-up-hidden">
             <button class="win95-btn active dial-up-element dial-up-hidden" data-target="home" onclick="showPage('home', this)"><i class="fas fa-home"></i> Home</button>
             <button class="win95-btn dial-up-element dial-up-hidden" data-target="about" onclick="showPage('about', this)"><i class="fas fa-user"></i> About</button>
             <button class="win95-btn dial-up-element dial-up-hidden" data-target="services" onclick="showPage('services', this)"><i class="fas fa-tools"></i> Services</button>
@@ -329,11 +322,11 @@
         // === STATE MACHINE FOR SEQUENCES ===
         const bootScreen = document.getElementById('boot-screen');
         const pressStart = document.getElementById('press-start');
-        const bootSound = document.getElementById('boot-sound');
         
-        let bootState = 'waiting'; // Tracks state: 'waiting', 'booting', 'boot_done', 'loading_site', 'site_loaded'
+        // Boot States: 'waiting', 'booting', 'boot_done', 'loading_site', 'site_loaded'
+        let bootState = 'waiting'; 
         let bootTimeouts = []; 
-        let siteTimeouts = []; // Tracks the dial-up timeouts to allow skipping
+        let siteTimeouts = []; 
 
         // Hide log initially
         const logLines = document.querySelectorAll('.boot-line');
@@ -341,7 +334,7 @@
 
         // Handle Master Click Logic
         function handleInteraction(e) {
-            if (bootState === 'site_loaded') return; // Do nothing if fully loaded
+            if (bootState === 'site_loaded') return; 
 
             if (bootState === 'waiting') {
                 startBoot();
@@ -357,14 +350,16 @@
         // ============================
         function startBoot() {
             bootState = 'booting';
-            bootSound.play().catch(e => {});
             pressStart.style.display = 'none';
+            
+            // Uncomment if/when you add boot.mp3
+            // document.getElementById('boot-sound').play().catch(e => {});
             
             let delay = 0;
             const lines = document.querySelectorAll('.boot-line');
             
             lines.forEach((line) => {
-                delay += Math.random() * 300 + 100; 
+                delay += Math.random() * 300 + 100; // Typewriter speed
                 const timeoutId = setTimeout(() => { 
                     line.classList.add('visible'); 
                     bootScreen.scrollTop = bootScreen.scrollHeight; 
@@ -372,14 +367,12 @@
                 bootTimeouts.push(timeoutId);
             });
 
-            const finishTimeoutId = setTimeout(() => { 
-                finishBoot(); 
-            }, delay + 1200);
+            const finishTimeoutId = setTimeout(() => { finishBoot(); }, delay + 800);
             bootTimeouts.push(finishTimeoutId);
         }
 
         function skipBoot() {
-            // Cancel all scheduled BIOS line reveals
+            // Cancel scheduled typing
             bootTimeouts.forEach(timeout => clearTimeout(timeout));
             bootTimeouts = [];
 
@@ -394,11 +387,11 @@
             bootState = 'boot_done';
             bootScreen.classList.add('fade-out');
             
-            // Once faded out, remove it and start the slow site load
+            // Wait for fade to finish, remove BIOS, start dial-up load
             setTimeout(() => { 
                 bootScreen.style.display = 'none';
                 startSiteLoad();
-            }, 1000); 
+            }, 800); 
         }
 
         // ============================
@@ -409,24 +402,21 @@
             let delay = 0;
             const elements = document.querySelectorAll('.dial-up-element');
 
-            // Pop in blocks one by one with a slight random delay (100ms - 350ms per block)
+            // Pop in blocks sequentially with a harsh blocky delay
             elements.forEach((el) => {
-                delay += Math.random() * 250 + 100; 
+                delay += Math.random() * 200 + 150; // Dial-up chunk speed
                 const timeoutId = setTimeout(() => {
                     el.classList.remove('dial-up-hidden');
                 }, delay);
                 siteTimeouts.push(timeoutId);
             });
 
-            // Finish when the last element pops in
-            const finishId = setTimeout(() => {
-                finishSiteLoad();
-            }, delay + 100);
+            const finishId = setTimeout(() => { finishSiteLoad(); }, delay + 100);
             siteTimeouts.push(finishId);
         }
 
         function skipSiteLoad() {
-            // Cancel the slow website loading and reveal all remaining blocks
+            // Cancel dial-up loading and reveal everything
             siteTimeouts.forEach(t => clearTimeout(t));
             siteTimeouts = [];
             document.querySelectorAll('.dial-up-element').forEach(el => el.classList.remove('dial-up-hidden'));
@@ -437,12 +427,12 @@
             bootState = 'site_loaded';
         }
 
-        // Global Listeners for the click/key skips
+        // Listen for interactions to progress sequences
         document.addEventListener('keydown', handleInteraction);
         document.addEventListener('click', handleInteraction);
         document.addEventListener('touchstart', handleInteraction);
 
-        // === CENTRALIZED DATA ===
+        // === TRACK & EVENT DATA ===
         const tracks = [
             { file: 'Big_Boi_KLICKAUD.mp3', title: 'Big Boi' },
             { file: 'Countess Bathory Cover.mp3', title: 'Countess Bathory (Cover)' },
@@ -450,68 +440,38 @@
             { file: 'Jam3_trim.mp3', title: 'Central Cal Jam' },
             { file: 'New_World_Order_Growl_FM_Phantom_Liberty_Cyberpunk_2077_KLICKAUD.mp3', title: 'New World Order' }
         ];
-
+        
         const bandEvents = [
-            { 
-                date: '2026-02-01', 
-                displayDate: 'Feb 1, 2026', 
-                venue: 'The Holland Project', 
-                location: 'Reno, NV', 
-                flyer: 'images/holland.jpg', 
-                details: 'w/ Jo Passed, Rotten Heights. $10 Adv / $12 Door. 7PM.' 
-            },
-            { 
-                date: '2026-02-06', 
-                displayDate: 'Feb 6, 2026', 
-                venue: '7825 Lichen Drive', 
-                location: 'Citrus Heights, CA', 
-                flyer: 'images/sac_flyer_2.jpg', 
-                details: 'Frontseat58 Feature. $15 Door. 6:30PM.' 
-            },
+            { date: '2026-02-01', displayDate: 'Feb 1, 2026', venue: 'The Holland Project', location: 'Reno, NV', flyer: 'images/holland.jpg', details: 'w/ Jo Passed, Rotten Heights. $10 Adv / $12 Door. 7PM.' },
+            { date: '2026-02-06', displayDate: 'Feb 6, 2026', venue: '7825 Lichen Drive', location: 'Citrus Heights, CA', flyer: 'images/sac_flyer_2.jpg', details: 'Frontseat58 Feature. $15 Door. 6:30PM.' },
 			{ date: '2026-03-18', displayDate: 'Mar 18, 2026', venue: '670 E. Prater Way', location: 'Sparks, NV', flyer: 'images/pizzava.jpg', details: 'insane mixed bill with Who Brought Opie from Oregon and our hometown friends Shower Poopers and Boot Bunny. $10 Door. 7PM.', link: '#' }
         ];
+
+        let currentTrackIndex = -1;
+        let isShuffle = false;
 
         function renderEvents() {
             const upcomingContainer = document.getElementById('upcoming-list');
             const pastContainer = document.getElementById('past-list');
-            const today = new Date();
-            today.setHours(0,0,0,0);
-
-            upcomingContainer.innerHTML = '';
-            pastContainer.innerHTML = '';
+            const today = new Date(); today.setHours(0,0,0,0);
+            upcomingContainer.innerHTML = ''; pastContainer.innerHTML = '';
 
             bandEvents.forEach(evt => {
                 const [y, m, d] = evt.date.split('-').map(Number);
                 const eventDate = new Date(y, m - 1, d);
-                
-                const cardHTML = `
-                    <div class="event-card">
-                        <div class="polaroid-frame">
-                            <img src="${evt.flyer}" alt="Show Flyer">
-                        </div>
-                        <div class="event-info">
-                            <div class="event-date">${evt.displayDate}</div>
-                            <div class="event-venue">${evt.venue}</div>
-                            <div class="event-loc">${evt.location}</div>
-                            <div class="event-details">${evt.details}</div>
-                        </div>
-                    </div>
-                `;
-
+                const cardHTML = `<div class="event-card"><div class="polaroid-frame"><img src="${evt.flyer}" alt="Show Flyer"></div><div class="event-info"><div class="event-date">${evt.displayDate}</div><div class="event-venue">${evt.venue}</div><div class="event-loc">${evt.location}</div><div class="event-details">${evt.details}</div></div></div>`;
                 if (eventDate < today) pastContainer.innerHTML += cardHTML;
                 else upcomingContainer.innerHTML += cardHTML;
             });
-
             if (upcomingContainer.innerHTML === '') upcomingContainer.innerHTML = '<p class="no-events">No upcoming transmissions detected.</p>';
             if (pastContainer.innerHTML === '') pastContainer.innerHTML = '<p class="no-events">Archives empty.</p>';
         }
 
-        // === NAVIGATION LOGIC ===
+        // Navigation
         function showPage(pageId, btn, pushToHistory = true) {
             const contentArea = document.getElementById('main-content-area');
             if (pushToHistory) history.pushState({ pageId: pageId }, null, `#${pageId}`);
             contentArea.classList.add('screen-transition');
-
             setTimeout(() => {
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
                 document.getElementById(pageId).classList.add('active');
@@ -525,64 +485,28 @@
             setTimeout(() => { contentArea.classList.remove('screen-transition'); }, 500);
         }
 
-        function triggerNav(targetId) {
-            const btn = document.querySelector(`button[data-target="${targetId}"]`);
-            if (btn) btn.click();
-        }
+        function triggerNav(targetId) { const btn = document.querySelector(`button[data-target="${targetId}"]`); if (btn) btn.click(); }
 
         window.addEventListener('load', () => {
             const hash = window.location.hash.substring(1);
             if (hash && document.getElementById(hash)) showPage(hash, null, false);
             else renderEvents();
         });
+        window.addEventListener('popstate', () => { showPage(window.location.hash.substring(1) || 'home', null, false); });
 
-        window.addEventListener('popstate', () => {
-            const hash = window.location.hash.substring(1);
-            showPage(hash || 'home', null, false);
-        });
-
-        // Media Player Logic
-        function toggleMediaPlayer() {
-            const player = document.getElementById('media-player');
-            player.style.display = (player.style.display === 'none') ? 'block' : 'none';
-        }
-
+        // Player
+        function toggleMediaPlayer() { const p = document.getElementById('media-player'); p.style.display = (p.style.display === 'none') ? 'block' : 'none'; }
         function loadAndPlay(f, t) {
             const a = document.getElementById('bg-music'); a.src = 'music/' + f;
-            a.play().catch(e => console.log("User interaction required"));
-            document.getElementById('player-track-name').innerText = t;
-            document.getElementById('media-player').style.display = 'block';
+            a.play().catch(e=>console.log(e)); document.getElementById('player-track-name').innerText = t; document.getElementById('media-player').style.display = 'block';
         }
-
-        function playTrack(f, t) {
-            const i = tracks.findIndex(x => x.file === f);
-            if (i !== -1) currentTrackIndex = i;
-            loadAndPlay(f, t);
-        }
-
-        function nextTrack() {
-            if (tracks.length === 0) return;
-            if (isShuffle) { currentTrackIndex = Math.floor(Math.random() * tracks.length); }
-            else { currentTrackIndex = (currentTrackIndex + 1) % tracks.length; }
-            loadAndPlay(tracks[currentTrackIndex].file, tracks[currentTrackIndex].title);
-        }
-
-        function prevTrack() {
-            if (tracks.length === 0) return;
-            if (currentTrackIndex <= 0) { currentTrackIndex = tracks.length - 1; }
-            else { currentTrackIndex--; }
-            loadAndPlay(tracks[currentTrackIndex].file, tracks[currentTrackIndex].title);
-        }
-
-        function toggleShuffle() {
-            isShuffle = !isShuffle;
-            const btn = document.getElementById('shuffle-btn');
-            isShuffle ? btn.classList.add('active-state') : btn.classList.remove('active-state');
-        }
-
+        function playTrack(f, t) { const i = tracks.findIndex(x => x.file === f); if (i!==-1) currentTrackIndex = i; loadAndPlay(f, t); }
+        function nextTrack() { if(!tracks.length)return; currentTrackIndex = isShuffle ? Math.floor(Math.random()*tracks.length) : (currentTrackIndex+1)%tracks.length; loadAndPlay(tracks[currentTrackIndex].file, tracks[currentTrackIndex].title); }
+        function prevTrack() { if(!tracks.length)return; currentTrackIndex = (currentTrackIndex<=0) ? tracks.length-1 : currentTrackIndex-1; loadAndPlay(tracks[currentTrackIndex].file, tracks[currentTrackIndex].title); }
+        function toggleShuffle() { isShuffle = !isShuffle; const b = document.getElementById('shuffle-btn'); isShuffle ? b.classList.add('active-state') : b.classList.remove('active-state'); }
         document.getElementById('bg-music').addEventListener('ended', nextTrack);
 
-        // Draggable window implementation
+        // Drag
         dragElement(document.getElementById("media-player"));
         function dragElement(elmnt) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;

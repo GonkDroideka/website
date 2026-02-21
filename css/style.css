@@ -38,7 +38,7 @@ body {
 }
 
 .dial-up-element {
-    /* No transition makes it "pop" in abruptly, matching 90s loading */
+    /* No transitions - makes elements "pop" in abruptly, matching 90s loading */
 }
 
 h2 {
@@ -432,7 +432,7 @@ a:not(.win95-btn) {
 
 /* Fade out animation for the whole screen */
 .fade-out {
-    animation: fadeOutScreen 1s forwards;
+    animation: fadeOutScreen 0.8s forwards;
     pointer-events: none; /* Let clicks pass through as it fades */
 }
 
