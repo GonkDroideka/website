@@ -356,18 +356,7 @@
 
         // Handle Master Click Logic
         function handleInteraction(e) {
-            // Prevent mobile double-firing (touchstart + click happening simultaneously)
-            const now = Date.now();
-            if (now - lastInteractionTime < 300) return;
-            lastInteractionTime = now;
-
-            console.log("Interaction registered! Current State: " + bootState);
-
-            if (bootState === 'site_loaded') {
-                // If the site is fully loaded, re-enable the body pointer events to normal
-                document.body.style.cursor = 'default';
-                return; 
-            }
+            if (bootState === 'site_loaded') return; 
 
             if (bootState === 'waiting') {
                 startBoot();
