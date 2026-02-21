@@ -384,7 +384,7 @@
             bootSound.currentTime = 0;
             bootSound.play().catch(e => console.log("Audio play prevented - requires user gesture"));
             
-            let delay = 0;
+            let delay = 1000;
             
             logLines.forEach((line) => {
                 delay += Math.random() * 300 + 50; // Typewriter typing speed
@@ -437,7 +437,7 @@
             fadeTimeout = setTimeout(() => { 
                 bootScreen.style.display = 'none';
                 startSiteLoad();
-            }, 800); 
+            }, 1000); 
         }
 
         // ============================
@@ -449,7 +449,7 @@
 
             // Elements are naturally processed in top-to-bottom DOM order
             dialUpElements.forEach((el) => {
-                let step = Math.random() * 160 + 20; // Fast dial-up chunk speed
+                let step = Math.random() * 400 + 20; // Fast dial-up chunk speed
                 // Make larger blocks take slightly longer
                 if (el.classList.contains('main-window') || el.classList.contains('win-panel')) step += 100;
                 
