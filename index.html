@@ -387,7 +387,7 @@
             let delay = 0;
             
             logLines.forEach((line) => {
-                delay += Math.random() * 200 + 50; // Typewriter typing speed
+                delay += Math.random() * 300 + 50; // Typewriter typing speed
                 const timeoutId = setTimeout(() => { 
                     line.classList.add('visible'); 
                     bootScreen.scrollTop = bootScreen.scrollHeight; 
@@ -449,7 +449,7 @@
 
             // Elements are naturally processed in top-to-bottom DOM order
             dialUpElements.forEach((el) => {
-                let step = Math.random() * 60 + 20; // Fast dial-up chunk speed
+                let step = Math.random() * 160 + 20; // Fast dial-up chunk speed
                 // Make larger blocks take slightly longer
                 if (el.classList.contains('main-window') || el.classList.contains('win-panel')) step += 100;
                 
