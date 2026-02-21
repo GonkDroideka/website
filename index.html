@@ -58,12 +58,12 @@
     </div>
 
     <!-- Audio Elements -->
+    <audio id="boot-sound"><source src="music/boot.m4a" type="audio/mp4"></audio>
     <audio id="bg-music"><source src="" type="audio/mpeg"></audio>
 
     <div class="desktop">
         
-        <!-- Elements with dial-up-element & dial-up-hidden load in sequentially -->
-        <button class="win95-btn music-launcher dial-up-element dial-up-hidden" onclick="toggleMediaPlayer()">
+        <button class="win95-btn music-launcher" onclick="toggleMediaPlayer()">
             <i class="fas fa-music"></i> Media Player
         </button>
 
@@ -87,7 +87,7 @@
         </div>
 
         <!-- Main Window -->
-        <div class="window main-window dial-up-element dial-up-hidden">
+        <div class="window main-window">
             <div class="title-bar">
                 <div class="title" id="window-title">Rithvik Ram - Portfolio</div>
                 <div class="controls"><span>_</span><span>□</span><span>×</span></div>
@@ -98,26 +98,26 @@
                 <!-- HOME -->
                 <div id="home" class="page active">
                     <div class="hero-section">
-                        <h1 class="glitch-header dial-up-element dial-up-hidden" data-text="Rithvik Ram">Rithvik Ram</h1>
-                        <p class="subtitle dial-up-element dial-up-hidden">IT Guy | Music Meister | A/V Technician</p>
-                        <p class="dial-up-element dial-up-hidden" style="font-size: 0.9rem; margin-top: 5px;">Reno, NV | <i class="fas fa-envelope"></i> rithvik2001@gmail.com</p>
-                        <hr class="win-divider dial-up-element dial-up-hidden">
+                        <h1 class="glitch-header" data-text="Rithvik Ram">Rithvik Ram</h1>
+                        <p class="subtitle">IT Guy | Music Meister | A/V Technician</p>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Reno, NV | <i class="fas fa-envelope"></i> rithvik2001@gmail.com</p>
+                        <hr class="win-divider">
                     </div>
 
                     <div class="skill-grid">
-                        <div class="skill-card dial-up-element dial-up-hidden" onclick="triggerNav('projects')">
+                        <div class="skill-card" onclick="triggerNav('projects')">
                             <div class="card-icon"><i class="fas fa-server"></i></div>
                             <h3>Systems & Projects</h3>
                             <p>Active Directory, Windows Server, Virtualization, and Cloud Labs.</p>
                             <span class="link-text">View Projects <i class="fas fa-arrow-right"></i></span>
                         </div>
-                        <div class="skill-card dial-up-element dial-up-hidden" onclick="triggerNav('media')">
+                        <div class="skill-card" onclick="triggerNav('media')">
                             <div class="card-icon"><i class="fas fa-film"></i></div>
                             <h3>Media</h3>
                             <p>I did a thing.</p>
                             <span class="link-text">View Media <i class="fas fa-arrow-right"></i></span>
                         </div>
-                        <div class="skill-card dial-up-element dial-up-hidden" onclick="triggerNav('services')">
+                        <div class="skill-card" onclick="triggerNav('services')">
                             <div class="card-icon"><i class="fas fa-toolbox"></i></div>
                             <h3>Services & Skills</h3>
                             <p>A/V, Web Design, and Music Tutoring.</p>
@@ -325,15 +325,15 @@
             </div>
         </div>
 
-        <!-- Taskbar Elements load sequentially -->
-        <div class="nav-bottom dial-up-element dial-up-hidden">
-            <button class="win95-btn active dial-up-element dial-up-hidden" data-target="home" onclick="showPage('home', this)"><i class="fas fa-home"></i> Home</button>
-            <button class="win95-btn dial-up-element dial-up-hidden" data-target="about" onclick="showPage('about', this)"><i class="fas fa-user"></i> About</button>
-            <button class="win95-btn dial-up-element dial-up-hidden" data-target="services" onclick="showPage('services', this)"><i class="fas fa-tools"></i> Services</button>
-            <button class="win95-btn dial-up-element dial-up-hidden" data-target="projects" onclick="showPage('projects', this)"><i class="fas fa-folder-open"></i> Projects</button>
-            <button class="win95-btn dial-up-element dial-up-hidden" data-target="media" onclick="showPage('media', this)"><i class="fas fa-compact-disc"></i> Media</button>
-            <button class="win95-btn dial-up-element dial-up-hidden" data-target="events" onclick="showPage('events', this)"><i class="fas fa-calendar"></i> Events</button>
-            <button class="win95-btn dial-up-element dial-up-hidden" data-target="contact" onclick="showPage('contact', this)"><i class="fas fa-envelope"></i> Contact</button>
+        <!-- Taskbar -->
+        <div class="nav-bottom">
+            <button class="win95-btn active" data-target="home" onclick="showPage('home', this)"><i class="fas fa-home"></i> Home</button>
+            <button class="win95-btn" data-target="about" onclick="showPage('about', this)"><i class="fas fa-user"></i> About</button>
+            <button class="win95-btn" data-target="services" onclick="showPage('services', this)"><i class="fas fa-tools"></i> Services</button>
+            <button class="win95-btn" data-target="projects" onclick="showPage('projects', this)"><i class="fas fa-folder-open"></i> Projects</button>
+            <button class="win95-btn" data-target="media" onclick="showPage('media', this)"><i class="fas fa-compact-disc"></i> Media</button>
+            <button class="win95-btn" data-target="events" onclick="showPage('events', this)"><i class="fas fa-calendar"></i> Events</button>
+            <button class="win95-btn" data-target="contact" onclick="showPage('contact', this)"><i class="fas fa-envelope"></i> Contact</button>
         </div>
     </div>
 
@@ -341,11 +341,14 @@
         // === STATE MACHINE FOR SEQUENCES ===
         const bootScreen = document.getElementById('boot-screen');
         const pressStart = document.getElementById('press-start');
+        const bootSound = document.getElementById('boot-sound');
         
         // Boot States: 'waiting', 'booting', 'boot_done', 'loading_site', 'site_loaded'
         let bootState = 'waiting'; 
         let bootTimeouts = []; 
         let siteTimeouts = []; 
+        let fadeTimeout;
+        let dialUpElements = [];
 
         // Hide log initially
         const logLines = document.querySelectorAll('.boot-line');
@@ -359,6 +362,12 @@
                 startBoot();
             } else if (bootState === 'booting') {
                 skipBoot();
+            } else if (bootState === 'boot_done') {
+                // If user clicks while the boot screen is fading out, skip directly to final site load
+                clearTimeout(fadeTimeout);
+                bootScreen.style.display = 'none';
+                startSiteLoad();
+                skipSiteLoad();
             } else if (bootState === 'loading_site') {
                 skipSiteLoad();
             }
@@ -371,14 +380,14 @@
             bootState = 'booting';
             pressStart.style.display = 'none';
             
-            // Uncomment if/when you add boot.mp3
-            // document.getElementById('boot-sound').play().catch(e => {});
+            // Play boot sound
+            bootSound.currentTime = 0;
+            bootSound.play().catch(e => console.log("Audio play prevented - requires user gesture"));
             
             let delay = 0;
-            const lines = document.querySelectorAll('.boot-line');
             
-            lines.forEach((line) => {
-                delay += Math.random() * 300 + 100; // Typewriter speed
+            logLines.forEach((line) => {
+                delay += Math.random() * 200 + 50; // Typewriter typing speed
                 const timeoutId = setTimeout(() => { 
                     line.classList.add('visible'); 
                     bootScreen.scrollTop = bootScreen.scrollHeight; 
@@ -386,28 +395,46 @@
                 bootTimeouts.push(timeoutId);
             });
 
-            const finishTimeoutId = setTimeout(() => { finishBoot(); }, delay + 800);
+            const finishTimeoutId = setTimeout(() => { finishBoot(); }, delay + 600);
             bootTimeouts.push(finishTimeoutId);
         }
 
         function skipBoot() {
             // Cancel scheduled typing
-            bootTimeouts.forEach(timeout => clearTimeout(timeout));
+            bootTimeouts.forEach(t => clearTimeout(t));
             bootTimeouts = [];
 
+            // Stop boot audio on skip
+            bootSound.pause();
+
             // Show all BIOS lines immediately
-            document.querySelectorAll('.boot-line').forEach(line => line.classList.add('visible'));
+            logLines.forEach(line => line.classList.add('visible'));
             bootScreen.scrollTop = bootScreen.scrollHeight;
 
             finishBoot();
         }
 
+        function prepareSiteLoad() {
+            // Dynamically grab all core UI elements and active page components
+            // This prevents you from having to manually add CSS classes to your HTML
+            const selector = '.music-launcher, .main-window, .title-bar, .page.active > *, .page.active .skill-card, .page.active .win-panel, .page.active .video-container, .page.active .track-item, .page.active .event-card, .nav-bottom';
+            dialUpElements = document.querySelectorAll(selector);
+            
+            dialUpElements.forEach(el => {
+                el.classList.add('dial-up-element', 'dial-up-hidden');
+            });
+        }
+
         function finishBoot() {
             bootState = 'boot_done';
+            
+            // Hide the website components while the background is still covered by the boot screen
+            prepareSiteLoad();
+            
             bootScreen.classList.add('fade-out');
             
             // Wait for fade to finish, remove BIOS, start dial-up load
-            setTimeout(() => { 
+            fadeTimeout = setTimeout(() => { 
                 bootScreen.style.display = 'none';
                 startSiteLoad();
             }, 800); 
@@ -419,26 +446,33 @@
         function startSiteLoad() {
             bootState = 'loading_site';
             let delay = 0;
-            const elements = document.querySelectorAll('.dial-up-element');
 
-            // Pop in blocks sequentially with a harsh blocky delay
-            elements.forEach((el) => {
-                delay += Math.random() * 200 + 150; // Dial-up chunk speed
+            // Elements are naturally processed in top-to-bottom DOM order
+            dialUpElements.forEach((el) => {
+                let step = Math.random() * 60 + 20; // Fast dial-up chunk speed
+                // Make larger blocks take slightly longer
+                if (el.classList.contains('main-window') || el.classList.contains('win-panel')) step += 100;
+                
+                delay += step;
                 const timeoutId = setTimeout(() => {
                     el.classList.remove('dial-up-hidden');
                 }, delay);
                 siteTimeouts.push(timeoutId);
             });
 
-            const finishId = setTimeout(() => { finishSiteLoad(); }, delay + 100);
+            const finishId = setTimeout(() => { finishSiteLoad(); }, delay + 50);
             siteTimeouts.push(finishId);
         }
 
         function skipSiteLoad() {
-            // Cancel dial-up loading and reveal everything
+            // Cancel dial-up loading and reveal everything remaining instantly
             siteTimeouts.forEach(t => clearTimeout(t));
             siteTimeouts = [];
-            document.querySelectorAll('.dial-up-element').forEach(el => el.classList.remove('dial-up-hidden'));
+            dialUpElements.forEach(el => el.classList.remove('dial-up-hidden'));
+            
+            // Stop boot audio if it is still playing during site skip
+            bootSound.pause();
+            
             finishSiteLoad();
         }
 
