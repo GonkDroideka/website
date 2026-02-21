@@ -454,7 +454,7 @@
                 if (el.classList.contains('main-window') || el.classList.contains('win-panel')) step += 100;
 				
 				// Make the skill cards load significantly slower (simulating heavy images/buttons)
-                if (el.classList.contains('skill-card')) step += 600; 
+                if (el.classList.contains('skill-card')) step += 500; 
                 
                 delay += step;
                 const timeoutId = setTimeout(() => {
