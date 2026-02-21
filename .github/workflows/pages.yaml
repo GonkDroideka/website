@@ -1,4 +1,4 @@
-name: Deploy - ${{ github.event.head_commit.message }}
+name: Deploy Site
 
 on:
   push:
@@ -12,10 +12,12 @@ permissions:
 
 jobs:
   deploy:
+    name: Deploy - ${{ github.event.head_commit.message }}
+    runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
