@@ -355,12 +355,16 @@
         logLines.forEach(line => line.classList.remove('visible'));
 
         // Handle Master Click Logic
+        function isMobile() {
+            return window.innerWidth <= 600;
+        }
+
         function handleInteraction(e) {
             if (bootState === 'site_loaded') return; 
 
             if (bootState === 'waiting') {
                 startBoot();
-            } else if (bootState === 'booting') {
+            } else if (bootState === 'booting' && !isMobile()) {
                 skipBoot();
             } else if (bootState === 'boot_done') {
                 // If user clicks while the boot screen is fading out, skip directly to final site load
