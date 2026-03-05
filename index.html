@@ -391,7 +391,7 @@
             let delay = 0;
             
             logLines.forEach((line) => {
-                delay += Math.random() * 300 + 50; // Typewriter typing speed
+                delay += Math.random() * 275 + 50; // Typewriter typing speed
                 const timeoutId = setTimeout(() => { 
                     line.classList.add('visible'); 
                     bootScreen.scrollTop = bootScreen.scrollHeight; 
@@ -399,7 +399,7 @@
                 bootTimeouts.push(timeoutId);
             });
 
-            const finishTimeoutId = setTimeout(() => { finishBoot(); }, delay + 600);
+            const finishTimeoutId = setTimeout(() => { finishBoot(); }, delay + 100);
             bootTimeouts.push(finishTimeoutId);
         }
 
@@ -453,12 +453,12 @@
 
             // Elements are naturally processed in top-to-bottom DOM order
             dialUpElements.forEach((el) => {
-                let step = Math.random() * 275 + 20; // Fast dial-up chunk speed
+                let step = Math.random() * 265 + 20; // Fast dial-up chunk speed
                 // Make larger blocks take slightly longer
                 if (el.classList.contains('main-window') || el.classList.contains('win-panel')) step += 100;
 				
 				// Make the skill cards load significantly slower (simulating heavy images/buttons)
-                if (el.classList.contains('skill-card')) step += 500; 
+                if (el.classList.contains('skill-card')) step += 300; 
                 
                 delay += step;
                 const timeoutId = setTimeout(() => {
